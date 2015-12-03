@@ -1,6 +1,6 @@
 I want my Project to be a Single Page Application.
 I want my Project to display the cities that are top job markets for devs.
-I want my Project to have users.
+I want my Project to have user profiles.
 I want my page to sort the cities in order of what's important to the user.
 
 Describe a city
