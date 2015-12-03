@@ -1,22 +1,22 @@
-function City(name, averageSalary, numJobs, costOfLiving, livability, comment) {
+function City(name, gifUrl, averageSalary, numJobs, costOfLiving, livability) {
     this.name = name;
+    this.gifUrl = gifUrl;
     this.averageSalary = averageSalary;
     this.numJobs = numJobs;
     this.costOfLiving = costOfLiving;
     this.livability = livability;
-    this.comment = comment;
 }
 
 module.exports = City;
 
 var cities = ["Seattle",
-"LA",
-"Detroit",
-"Atlanta",
-"NY",
-"San Fran",
-"DC",
-"Boston",
+"LA",  70439
+"Detroit",  66038
+"Atlanta",  67097
+"NY",  69785
+"San Fran",  85881
+"DC",  74426
+"Boston",  71236
 "Chicago",
 "Raleigh",
 "Charlotte",
@@ -28,7 +28,6 @@ var cities = ["Seattle",
 "Madison" ,
 "San Jose",
 "Huntsville",
-"Durham",
 "Dallas",
 "Cedar Rapids",
 "Colorado Springs",
