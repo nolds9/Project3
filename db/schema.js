@@ -7,7 +7,7 @@ var ObjectId = Schema.Types.ObjectId;
 var CitySchema = new Schema(
   {
     name: String,
-    gifURL: String,
+    gifUrl: String,
     averageSalary: String,
     livability: String,
     costOfLiving: String,
