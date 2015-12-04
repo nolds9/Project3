@@ -5,6 +5,7 @@ var citiesController = require("./controllers/cities")
 var path = require("path");
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
+app.set("view engine", "hbs");
 
 app.get("/", citiesController.index)
 

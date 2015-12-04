@@ -8,16 +8,11 @@ function error(response, message){
 }
 
 citiesController= {
-  index: function(req,res){
-    CityModel.find({}, function(err, docs){
-        if (err) {
-            console.console.log(err);
-        }
-        res.render("../views/index.hbs", {docs});
-        // console.log(docs);
-        // res.send(docs);
-    });
-}
+    index: function(req, res){
+      CityModel.find({}, function(err, docs){
+        res.render("../views/index", {cities: docs})
+      })
+    }
 }
 
 module.exports = citiesController
