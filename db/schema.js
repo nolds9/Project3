@@ -12,7 +12,7 @@ var CitySchema = new Schema(
     livability: String,
     costOfLiving: String,
     numJobs: String
-  }
+},
   {
     toObject: {virtuals: true},
     toJSON: {virtuals: true}
@@ -23,6 +23,4 @@ var CitySchema = new Schema(
 //   return this._id;
 // });
 
-
-
-mongoose.model("City", CitySchema);
+var CityModel = mongoose.model("City", CitySchema);

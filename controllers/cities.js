@@ -1,6 +1,6 @@
 var express = require("express");
-var router = express.Router();
-var City = require("../models/city");
+// var router = express.Router();
+var CityModel = require("../models/city");
 
 function error(response, message){
   response.status(500);
@@ -9,8 +9,15 @@ function error(response, message){
 
 citiesController= {
   index: function(req,res){
-    res.send("hi")
-  }
+    CityModel.find({}, function(err, docs){
+        if (err) {
+            console.console.log(err);
+        }
+        res.render("../views/index.hbs", {docs});
+        // console.log(docs);
+        // res.send(docs);
+    });
+}
 }
 
 module.exports = citiesController
