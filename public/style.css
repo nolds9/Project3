@@ -34,7 +34,11 @@ main {
   list-style: none;
 }
 
-.contender img {
+/*.contender img.forecast-icon {
+  float: right;
+}*/
+
+.contender img.city-image {
   width: 200px;
   height: 150px;
 }

@@ -18,6 +18,16 @@ function makeCityDiv(city) { // city = individual JSON
 
 var clicks = 0;
 
+function drawWeatherBox(cityName, $target) { // get custom JSON element for city
+  $.getJSON('/weather/' + cityName.split(',')[0] + '/' + cityName.split(', ')[1], function(json) {
+    console.log(json);
+    $target.find('.forecast-url').attr('href', json.forecast_url);
+    console.log(json.forecast_url);
+    $target.find('.forecast-icon').attr('src', json.forecast_icon_url);
+    console.log(json.forecast_icon);
+  });
+}
+
 function getCityData(cityName) {
   for ( var i = 0; i < cities.length; i += 1 ) {
     if ( cities[i].name === cityName )
@@ -32,13 +42,18 @@ function setCityAsContender(cityName, $target) {
   $target.empty();
   $target.append(
     '<h1>' + city.name + '</h1>' +
-    '<img src="' + city.imageUrl + '">' +
+    '<a class="forecast-url"><img class="forecast-icon"></a>' +
+    '<img src="' + city.imageUrl + '" class="city-image">' +
     '<ul>' +
       '<li>Average salary: ' + city.averageSalary + '</li>' +
       '<li>Number of jobs:' + city.numJobs + '</li>' +
       '<li>Cost of living: ' + city.costOfLiving + '</li>' +
     '</ul>'
   );
+
+  drawWeatherBox(cityName, $target);
+
+  console.log('setCityAsContender()');
 }
 
 function setContender(cityName) {
@@ -80,17 +95,6 @@ function listCities($target, citiesJson) {
 
 
 $(document).ready( function() { // why does this all need to be in on ready?
-
-  var $citySelector = $('#cities');
-
-  // $.getJSON('/cities.json', function(cityData) {
-  //   // console.log(cityData);
-  //   for ( var c = 0; c < cityData.length; c += 1 ) {
-  //     console.log(cityData[c]);
-  //     var city = cityData[c];
-  //     $citySelector.append(makeCityDiv(city));
-  //   }
-  // });
 
   var $citiesSection = $('#cities');
 
