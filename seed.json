@@ -1,0 +1,111 @@
+[
+{
+    "name": "Seattle, WA",
+    "imageUrl": "http://45.media.tumblr.com/tumblr_lxtxuadWJR1r6j7rho1_1280.gif",
+    "averageSalary": "77419",
+    "numJobs": "1197",
+    "costOfLiving": "1.36426"
+}, {
+    "name": "Los Angeles, CA",
+    "imageUrl": "https://media.giphy.com/media/lXiRmiIhKWy4B3FWo/giphy.gif",
+    "averageSalary": "70439",
+    "numJobs": "826",
+    "costOfLiving": "1.37314"
+}, {
+    "name": "Atlanta, GA",
+    "imageUrl": "http://cache.carlsonhotels.com/ow-cms/chi/images/city/Atlanta_marquee.jpg",
+    "averageSalary": "67097",
+    "numJobs": "440",
+    "costOfLiving": "0.99112"
+}, {
+    "name": "New York, NY",
+    "imageUrl": "http://www.teslasociety.com/pictures/manhattan2.jpg",
+    "averageSalary": "69785",
+    "numJobs": "1793",
+    "costOfLiving": "2.29"
+}, {
+    "name": "San Francisco, CA",
+    "imageUrl": "http://assets.fodors.com/destinations/54494/alamo-square-san-francisco-california-usa_main.jpg",
+    "averageSalary": "85881",
+    "numJobs": "1457",
+    "costOfLiving": "1.72458"
+}, {
+    "name": "Washington, DC",
+    "imageUrl": "http://images-resrc.staticlp.com/C=AR2x1/S=W798,U/O=85/http://media.lonelyplanet.com/a/g/hi/t/181cecf69ccb020c5365bf918f730c0f-washington-dc.jpg",
+    "averageSalary": "74426",
+    "numJobs": "1998",
+    "costOfLiving": "1.44028"
+}, {
+    "name": "Boston, MA",
+    "imageUrl": "http://static.guim.co.uk/sys-images/Travel/Pix/pictures/2013/9/10/1378826312564/Boston-harbour-and-skylin-008.jpg",
+    "averageSalary": "71236",
+    "numJobs": "1069",
+    "costOfLiving": "1.4077"
+}, {
+    "name": "Saint Louis, MO",
+    "imageUrl": "https://en.wikipedia.org/wiki/List_of_tallest_buildings_in_St._Louis",
+    "averageSalary": "77419",
+    "numJobs": "816",
+    "costOfLiving": "0.91906"
+}, {
+    "name": "Madison, WI",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Madison_Wisconsin_img_1196.jpg/800px-Madison_Wisconsin_img_1196.jpg",
+    "averageSalary": "64649",
+    "numJobs": "259",
+    "costOfLiving": "1.03948"
+}, {
+    "name": "Huntsville, AL",
+    "imageUrl": "https://en.wikipedia.org/wiki/Huntsville,_Alabama#/media/File:HsvMontage.jpg",
+    "averageSalary": "null",
+    "numJobs": "149",
+    "costOfLiving": "0.9082"
+}, {
+    "name": "Dallas, TX",
+    "imageUrl": "http://i.giphy.com/BwP6oBTVT5oC4.gif",
+    "averageSalary": "66499",
+    "numJobs": "2764",
+    "costOfLiving": "0.95162"
+}, {
+    "name": "Cedar Rapids, IA",
+    "imageUrl": "https://en.wikipedia.org/wiki/Cedar_Rapids,_Iowa#/media/File:Cedar_Rapids_skyline.jpg",
+    "averageSalary": "null",
+    "numJobs": "85",
+    "costOfLiving": "0.93288"
+}, {
+    "name": "Chicago, IL",
+    "imageUrl": "https://media.giphy.com/media/3o85xGoiVSXnhybhwk/giphy.gif",
+    "averageSalary": "68180",
+    "numJobs": "625",
+    "costOfLiving": "1.14708"
+}, {
+    "name": "Raleigh-Durham, NC",
+    "imageUrl": "http://www.realtyworldcarolinas.com/images/north-carolina/RaleighNC.jpg",
+    "averageSalary": "61935",
+    "numJobs": "291",
+    "costOfLiving": ".89832"
+}, {
+    "name": "Austin, TX",
+    "imageUrl": "https://media.giphy.com/media/gpvgSC7ERA4VO/giphy.gif",
+    "averageSalary": "64750",
+    "numJobs": "398",
+    "costOfLiving": ".94274"
+}, {
+    "name": "Miami, FL",
+    "imageUrl": "https://media4.giphy.com/media/xTiTnpXHz0foAmLtM4/200.gif",
+    "averageSalary": "65707",
+    "numJobs": "128",
+    "costOfLiving": "1.1076"
+}, {
+    "name": "Denver, CO",
+    "imageUrl": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS0mb-uJBcsjUw60qEHVaLLyBWWM2ErG7hZRhUV14CIhGcDLZND",
+    "averageSalary": "63438",
+    "numJobs": "400",
+    "costOfLiving": "1.07"
+}, {
+    "name": "Minneapolis, MN",
+    "imageUrl": "https://media4.giphy.com/media/OXMEYJuH2Lje8/200.gif",
+    "averageSalary": "64160",
+    "numJobs": "262",
+    "costOfLiving": "1.06614"
+}
+]

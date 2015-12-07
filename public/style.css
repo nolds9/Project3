@@ -1,0 +1,84 @@
+@import url(https://fonts.googleapis.com/css?family=Anton);
+
+body {
+  font-family: 'Anton', sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+main {
+  position: relative;
+}
+
+#arena {
+  width: 100%;
+  height: 320px;
+  postion: relative;
+}
+
+.init {
+  font-size: 600%;
+}
+
+.contender {
+  width: 33%;
+  border: solid 2px black;
+  position: absolute;
+  height: 320px;
+  color: white;
+  text-align: center;
+}
+
+.contender ul, .contender li {
+  list-style: none;
+}
+
+.contender img {
+  width: 200px;
+  height: 150px;
+}
+
+#contender-left {
+  top: 0;
+  left: 80px;
+  background-color: blue;
+}
+#contender-right {
+  top: 0;
+  right: 80px;
+  background-color: red;
+}
+
+#center-arena {
+  background: yellow;
+  font-size: 400%;
+  color: black;
+  text-align: center;
+}
+
+#center-arena p {
+  margin-top: 0; // get rid of that empty space
+}
+
+
+#cities {
+  background-color: lightgray;
+  position: relative;
+}
+
+#cities h3 {
+  display: inline-block;
+  background: lightgray;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+#cities h3:hover {
+  color: green;
+  cursor: pointer;
+}
+
+.selected {
+  color: gray;
+}
