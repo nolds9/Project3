@@ -18,10 +18,12 @@ function makeCityDiv(city) { // city = individual JSON
 
 var clicks = 0;
 
-function drawWeatherBox(cityName, $target) { // get custom JSON element for city
+function updateWeather(cityName, $target) { // get custom JSON element for city
   $.getJSON('/weather/' + cityName.split(',')[0] + '/' + cityName.split(', ')[1], function(json) {
-    $target.find('.forecast-url').attr('href', json.forecast_url);
-    $target.find('.forecast-icon').attr('src', json.forecast_icon_url);
+    var $weatherEl = $target.find('p.weather');
+    $weatherEl.empty();
+    $weatherEl.append('<img src="' + json.icon_url  + '">');
+    $weatherEl.append(json.fcttext);
   });
 }
 
@@ -39,7 +41,7 @@ function setCityAsContender(cityName, $target) {
   $target.empty();
   $target.append(
     '<h1>' + city.name + '</h1>' +
-    '<a class="forecast-url"><img class="forecast-icon"></a>' +
+    '<p class="weather">fetching weather</p>' +
     '<img src="' + city.imageUrl + '" class="city-image">' +
     '<ul>' +
       '<li>Average salary: ' + city.averageSalary + '</li>' +
@@ -48,7 +50,7 @@ function setCityAsContender(cityName, $target) {
     '</ul>'
   );
 
-  drawWeatherBox(cityName, $target);
+  updateWeather(cityName, $target);
 
   console.log('setCityAsContender()');
 }
