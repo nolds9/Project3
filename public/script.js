@@ -20,11 +20,8 @@ var clicks = 0;
 
 function drawWeatherBox(cityName, $target) { // get custom JSON element for city
   $.getJSON('/weather/' + cityName.split(',')[0] + '/' + cityName.split(', ')[1], function(json) {
-    console.log(json);
     $target.find('.forecast-url').attr('href', json.forecast_url);
-    console.log(json.forecast_url);
     $target.find('.forecast-icon').attr('src', json.forecast_icon_url);
-    console.log(json.forecast_icon);
   });
 }
 
