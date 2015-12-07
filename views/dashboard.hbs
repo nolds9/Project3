@@ -1,0 +1,39 @@
+<h1>Partners Dashboard</h1>
+<!-- city (pulldown menu), message(30 character limit), jobs  -->
+
+<form method="post" action="/partners/dashboard">
+  <div class="form-group">
+    <label for="Message">Your Message</label>
+    <input class="form-control" type="text" name="partner_message" maxlength="30">
+  </div>
+
+  <div class="form-group">
+    <label for="url">Your Link</label>
+    <input class="form-control" type="text" name="partner_link" maxlength="30">
+  </div>
+
+  <label for="Cities">Choose a City</label>
+  <select name="cities">
+    <option value="">Choose City</option>
+    <option value="Seattle">Seattle</option>
+    <option value="Los Angeles">Los Angeles</option>
+    <option value="New York">New York</option>
+    <option value="Atlanta">Atlanta</option>
+    <option value="San Francisco">San Francisco</option>
+    <option value="Chicago">Chicago</option>
+    <option value="Washington, DC">Washington, DC</option>
+    <option value="Boston">Boston</option>
+    <option value="St. Louis">St. Louis</option>
+    <option value="Madison, Wisconsin">Madison, Wisconsin</option>
+    <option value="Huntsville">Huntsville, Alabama</option>
+    <option value="Dallas">Dallas</option>
+    <option value="Cedar Rapis, Iowa">Cedar Rapids, Iowa</option>
+    <option value="Raleigh-Durham">Raleigh-Durham</option>
+    <option value="Austin">Austin</option>
+    <option value="Miami">Miami</option>
+    <option value="Denver">Denver</option>
+    <option value="Minneapolis">Minneapolis</option>
+  </select>
+
+  <input class="button" type="submit">
+</form>
