@@ -15,7 +15,10 @@ module.exports = function(city, state) {
     var url = "http://api.glassdoor.com/api/api.htm?t.p=" + partnerID + "&t.k=" + partnerKey + "&userip=50.200.196.50&useragent=&format=json&v=1&action=" + jobsReviewsSalariesEmployers[3] + "&q=" + encodeURI(searchTerm) + "&city=" + city + "&state=" + state + "&ps=1000/";
 
     //Example search for "web developer" in Washington DC:
-    // http://api.glassdoor.com/api/api.htm?t.p=49664&t.k=kHfa3c36WD5&userip=50.200.196.50&useragent=&format=json&v=1&action=employers&q=web+developer&city=washington&state=dc&ps=1000/
+    // http://api.glassdoor.com/api/api.htm?t.p=!!!!!&t.k=!!!!!&userip=!!!!!!!!!!!!&useragent=&format=json&v=1&action=employers&q=web+developer&city=washington&state=dc&ps=1000/
+
+    var someVar = [];
+    var employersToUser = [];
 
     var Employer = function(data) {
         this.name = data.name,
@@ -28,16 +31,18 @@ module.exports = function(city, state) {
             this.featuredReview = data.featuredReview
     }
 
+    Employer.prototype = {
+
+    }
+
     function createEmployers(data) {
         for (var i = 0; i < data.length; i++) {
             console.log("creating Employer " + data[i].name)
-            new Employer(data[i]);
+            employersToUser.push(new Employer(data[i]));
         }
     }
-    // Apparently I can't use jQuery on the server, so I'm trying to use node.
-    // node tells me that XMLHttpRequest() is not defined.
 
-    request({
+    var glassdoor = request({
         uri: url,
         method: "GET",
         followRedirect: true,
@@ -53,5 +58,11 @@ module.exports = function(city, state) {
         var currentPage = data.response.currentPageNumber;
         var totalPages = data.response.totalNumberOfPages;
         createEmployers(data.response.employers);
-    });
-};
+    }).then(function(results){
+        someVar.push(results);
+    })
+
+    return {
+        someVar;
+    }
+}
