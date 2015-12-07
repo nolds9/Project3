@@ -7,7 +7,7 @@ var cities; // What's wrong with storing city data here for global use?
 function makeCityDiv(city) { // city = individual JSON
   return '<div class="' + CITY_DIV_CLASS + '">' +
       '<h1>' + city.name + '</h1>' +
-      '<img src="' + city.imageUrl + '" alt="' + city.name + '">' +
+      '<img src="' + city.gifUrl + '" alt="' + city.name + '">' +
       '<ul>' +
         '<li>Average salary: ' + city.averageSalary + '</li>' +
         '<li>Number of jobs:' + city.numJobs + '</li>' +
@@ -32,7 +32,7 @@ function setCityAsContender(cityName, $target) {
   $target.empty();
   $target.append(
     '<h1>' + city.name + '</h1>' +
-    '<img src="' + city.imageUrl + '">' +
+    '<img src="' + city.gifUrl + '">' +
     '<ul>' +
       '<li>Average salary: ' + city.averageSalary + '</li>' +
       '<li>Number of jobs:' + city.numJobs + '</li>' +
