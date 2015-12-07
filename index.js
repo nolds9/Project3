@@ -6,6 +6,7 @@ var env = require('./env');
 mongoose.connect(env.mongoServer);
 
 var CityModel = require('./models');
+var Glassdoor = require('./glassdoorApi');
 
 var server = express();
 // server.use(bodyParser.json());
@@ -36,4 +37,8 @@ server.get('/city_name', function(req, res) {
       }
     }
   });
+});
+
+server.get('/glassdoor/:city/:state', function(req, res){
+        res.json(Glassdoor(req.params.city, req.params.state));
 });
