@@ -40,5 +40,5 @@ server.get('/city_name', function(req, res) {
 });
 
 server.get('/glassdoor/:city/:state', function(req, res){
-        res.json(Glassdoor(req.params.city, req.params.state));
+        res.send(Glassdoor(req.params.city, req.params.state));
 });

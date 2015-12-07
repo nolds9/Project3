@@ -1,4 +1,4 @@
-module.exports = function(city, state) {
+function apiCall(city, state) {
     var request = require("request");
     var env = require('./env.js');
     var searchTerm = "web developer";
@@ -17,8 +17,8 @@ module.exports = function(city, state) {
     //Example search for "web developer" in Washington DC:
     // http://api.glassdoor.com/api/api.htm?t.p=!!!!!&t.k=!!!!!&userip=!!!!!!!!!!!!&useragent=&format=json&v=1&action=employers&q=web+developer&city=washington&state=dc&ps=1000/
 
-    var someVar = [];
-    var employersToUser = [];
+    var numEmployers;
+    var toUser = [];
 
     var Employer = function(data) {
         this.name = data.name,
@@ -31,18 +31,15 @@ module.exports = function(city, state) {
             this.featuredReview = data.featuredReview
     }
 
-    Employer.prototype = {
-
-    }
-
     function createEmployers(data) {
         for (var i = 0; i < data.length; i++) {
             console.log("creating Employer " + data[i].name)
-            employersToUser.push(new Employer(data[i]));
+            var employer = new Employer(data[i])
+            toUser.push(employer);
         }
     }
 
-    var glassdoor = request({
+        request({
         uri: url,
         method: "GET",
         followRedirect: true,
@@ -52,17 +49,16 @@ module.exports = function(city, state) {
         console.log("Session ID: " + data.jsessionid);
         console.log("User Searched for: " + city + ", " + state);
         console.log("Acutal Search Location: " + data.response.lashedLocation.longName);
-        var numEmployers = data.response.totalRecordCount;
+        numEmployers = data.response.totalRecordCount.toString();
         console.log("number of Employers looking for Web Developers: " + data.response.totalRecordCount);
         console.log("length of employer results: " + data.response.employers.length);
         var currentPage = data.response.currentPageNumber;
         var totalPages = data.response.totalNumberOfPages;
         createEmployers(data.response.employers);
-    }).then(function(results){
-        someVar.push(results);
-    })
+        toUser.push(numEmployers);
+    });
 
-    return {
-        someVar;
-    }
+    return [numEmployers, toUser];
 }
+
+module.exports = apiCall(city, state);
