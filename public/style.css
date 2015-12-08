@@ -43,10 +43,17 @@ p.weather img, img.weather {
   float:right;
 }
 
+table {
+  font-family: 'Roboto', sans-serif;
+}
 
 .contender img.city-image {
   width: 200px;
   height: 150px;
+}
+
+.contender h1 {
+  letter-spacing: 2px;
 }
 
 #contender-left {
