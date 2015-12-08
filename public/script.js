@@ -7,13 +7,13 @@ function numberWithCommas(x) {
 }
 
 function getCleveIndexString(index) {
-  var indexRounded = (Math.round(index * 100) / 100).toString();
-  if ( index > 1 ) {
-    return indexRounded + ' times pricier than Cleveland';
-  } else if ( index < 1 ) {
-    return indexRounded + ' times cheaper than Cleveland';
+  var indexRounded = Math.round(index * 100);
+  if ( indexRounded > 90 && indexRounded < 110 ) {
+    return 'on par with Cleveland';
+  } else if ( index > 1 ) {
+    return indexRounded + '% pricier than Cleveland';
   } else {
-    return 'pretty much like living in Cleveland';
+    return indexRounded + '% times cheaper than Cleveland';
   }
 }
 
