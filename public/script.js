@@ -98,11 +98,11 @@ function getEmployers(target.city, target.state){
         createEmployers(json);
         for (var i = 0; i < employers.length; i++) {
             if ( clicks % 2 === 1 ) {
-              $('#contender-left').append('<p class="employer">' +  employers[i].name + '</p>');
+              $('#contender-left').append('<a class="employer" href=' + employers[i].website + '>' +  employers[i].name + '</a>');
             } else {
-              $('#contender-right').append('<p class="employer">' +  employers[i].name + '</p>');
+             $('#contender-right').append('<a class="employer" href=' + employers[i].website + '>' +  employers[i].name + '</a>');
             }
-        }
+        };
     });
 }
 

@@ -8,7 +8,8 @@
     "express": "^4.13.3",
     "hbs": "^4.0.0",
     "mongoose": "^4.2.9",
-    "request": "^2.67.0"
+    "request": "^2.67.0",
+    "xml2js": "^0.4.15"
   },
   "devDependencies": {},
   "scripts": {
