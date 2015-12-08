@@ -14,7 +14,7 @@ main {
 
 #arena {
   width: 100%;
-  height: 320px;
+  height: 500px;
   postion: relative;
 }
 
@@ -26,7 +26,7 @@ main {
   width: 33%;
   border: solid 2px black;
   position: absolute;
-  height: 400px;
+  height: 500px;
   color: white;
   text-align: center;
 }

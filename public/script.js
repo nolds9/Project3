@@ -51,12 +51,11 @@ function setCityAsContender(cityName, $target) {
   );
 
   updateWeather(cityName, $target);
-
-  console.log('setCityAsContender()');
+  // other API updates go here
 }
 
 function setContender(cityName) {
-  console.log(clicks);
+  // console.log(clicks);
   if ( clicks % 2 === 1 ) { // set contender on left
     $('#contender-right').append('<p class="init">?</p>').empty();
     setCityAsContender(cityName, $('#contender-left'));
@@ -82,7 +81,7 @@ function listCities($target, citiesJson) {
       }
       $(this).toggleClass('selected');
       // setContender(this.);
-      console.log(this.innerHTML);
+      // console.log(this.innerHTML); // show what city was clicked
       clicks += 1;
       setContender(this.innerHTML);
     });
