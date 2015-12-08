@@ -6,6 +6,7 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
+<<<<<<< HEAD
 function getCleveIndexString(index) {
   var indexRounded = (Math.round(index * 100) / 100).toString();
   if ( index > 1 ) {
@@ -15,6 +16,19 @@ function getCleveIndexString(index) {
   } else {
     return 'pretty much like living in Cleveland';
   }
+=======
+// this function isn't used anymore
+function makeCityDiv(city) { // city = individual JSON
+  return '<div class="' + CITY_DIV_CLASS + '">' +
+      '<h1>' + city.name + '</h1>' +
+      '<img src="' + city.gifUrl + '" alt="' + city.name + '">' +
+      '<ul>' +
+        '<li>Average salary: ' + city.averageSalary + '</li>' +
+        '<li>Number of jobs:' + city.numJobs + '</li>' +
+        '<li>Cost of living: ' + city.costOfLiving + '</li>' +
+      '</ul>' +
+    '</div>';
+>>>>>>> e499bd0e57ff113775ae04829f8e4bbd765e0276
 }
 
 var clicks = 0;
@@ -43,7 +57,7 @@ function setCityAsContender(cityName, $target) {
   $target.append(
     '<h1>' + city.name + '</h1>' +
     '<p class="weather">fetching weather</p>' +
-    '<img src="' + city.imageUrl + '" class="city-image">' +
+    '<img src="' + city.gifUrl + '" class="city-image">' +
     '<ul>' +
       '<li>Average salary: $' + numberWithCommas(city.averageSalary) + '</li>' +
       '<li>Number of jobs: ' + numberWithCommas(city.numJobs) + '</li>' +
