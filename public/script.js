@@ -2,6 +2,9 @@ var CITY_DIV_CLASS = 'city';
 
 var cities; // What's wrong with storing city data here for global use?
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 
 // this function isn't used anymore
 function makeCityDiv(city) { // city = individual JSON
@@ -9,8 +12,8 @@ function makeCityDiv(city) { // city = individual JSON
       '<h1>' + city.name + '</h1>' +
       '<img src="' + city.imageUrl + '" alt="' + city.name + '">' +
       '<ul>' +
-        '<li>Average salary: ' + city.averageSalary + '</li>' +
-        '<li>Number of jobs:' + city.numJobs + '</li>' +
+        '<li>Average salary: $' + numberWithCommas(city.averageSalary) + '</li>' +
+        '<li>Number of jobs: ' + numberWithCommas(city.numJobs) + '</li>' +
         '<li>Cost of living: ' + city.costOfLiving + '</li>' +
       '</ul>' +
     '</div>';
