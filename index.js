@@ -62,6 +62,7 @@ server.get('/glassdoor/:city/:state', function(req, res){
         res.send(data);
     });
 });
+
 server.get('/indeed/:city/:state', function(req, res){
     var city = req.params.city;
     var state = req.params.state;

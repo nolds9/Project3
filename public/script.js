@@ -89,7 +89,6 @@ function getEmployers(target.city, target.state){
     }
     function createEmployers(data) {
         for (var i = 0; i < data.length; i++) {
-            console.log("creating Employer " + data[i].name);
             var employer = new Employer(data[i]);
             employers.push(employer);
         }
