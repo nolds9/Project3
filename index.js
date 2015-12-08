@@ -39,13 +39,15 @@ server.get('/city_name', function(req, res) {
 });
 
 server.get('/glassdoor/:city/:state', function(req, res){
-    var Glassdoor = require('./glassdoorApi');
     var request = require("request");
     var env = require('./env.js');
     var searchTerm = "web developer";
     var jobsReviewsSalariesEmployers = ["jobs", "reviews", "salaries", "employers"];
     var partnerKey = env.glassdoorKey;
-    var partnerID = env.glassdoorPartnerID
+    var partnerID = env.glassdoorPartnerID;
+    var city = req.params.city;
+    var state = req.params.state;
+    var url = "http://api.glassdoor.com/api/api.htm?t.p=" + partnerID + "&t.k=" + partnerKey + "&userip=50.200.196.50&useragent=&format=json&v=1&action=" + jobsReviewsSalariesEmployers[3] + "&q=" + encodeURI(searchTerm) + "&city=" + city + "&state=" + state + "&ps=1000/";
     request({
         uri: url,
         method: "GET",
@@ -53,6 +55,12 @@ server.get('/glassdoor/:city/:state', function(req, res){
         maxRedirects: 5
     }, function(error, response, body) {
         var data = JSON.parse(body);
-        return data;
+        console.log("Session ID: " + data.jsessionid);
+        console.log("User Searched for: " + city + ", " + state);
+        console.log("Acutal Search Location: " + data.response.lashedLocation.longName);
+        var numEmployers = data.response.totalRecordCount.toString();
+        console.log("number of Employers looking for Web Developers: " + data.response.totalRecordCount);
+        console.log("length of employer results: " + data.response.employers.length);
+        res.send(data);
     });
 });
