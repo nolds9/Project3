@@ -75,12 +75,42 @@ function listCities($target, citiesJson) {
   }
 }
 
-
+function getEmployers(target.city, target.state){
+    var employers = [];
+    var Employer = function(data) {
+        this.name = data.name,
+            this.website = data.website,
+            this.industry = data.industry,
+            this.logo = data.squareLogo,
+            this.numRatings = data.numberOfRatings,
+            this.rating = data.overallRating,
+            this.ratingDescription = data.ratingDescription,
+            this.featuredReview = data.featuredReview
+    }
+    function createEmployers(data) {
+        for (var i = 0; i < data.length; i++) {
+            console.log("creating Employer " + data[i].name);
+            var employer = new Employer(data[i]);
+            employers.push(employer);
+        }
+    }
+    $.getJSON('/glassdoor/' + target.city + '/' + target.state, function(json) {
+        createEmployers(json);
+        for (var i = 0; i < employers.length; i++) {
+            if ( clicks % 2 === 1 ) {
+              $('#contender-left').append('<p class="employer">' +  employers[i].name + '</p>');
+            } else {
+              $('#contender-right').append('<p class="employer">' +  employers[i].name + '</p>');
+            }
+        }
+    });
+}
 
 
 
 $(document).ready( function() { // why does this all need to be in on ready?
-
+                                //because we dont want to run the code until the framework html is in place.
+                                // similar to .then or a callback...
   var $citySelector = $('#cities');
 
   // $.getJSON('/cities.json', function(cityData) {

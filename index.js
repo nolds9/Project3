@@ -1,7 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 // var bodyParser = require('body-parser');
-
+var request = require("request");
 var env = require('./env');
 mongoose.connect(env.mongoServer);
 
@@ -39,8 +39,6 @@ server.get('/city_name', function(req, res) {
 });
 
 server.get('/glassdoor/:city/:state', function(req, res){
-    var request = require("request");
-    var env = require('./env.js');
     var searchTerm = "web developer";
     var jobsReviewsSalariesEmployers = ["jobs", "reviews", "salaries", "employers"];
     var partnerKey = env.glassdoorKey;
@@ -62,5 +60,19 @@ server.get('/glassdoor/:city/:state', function(req, res){
         console.log("number of Employers looking for Web Developers: " + data.response.totalRecordCount);
         console.log("length of employer results: " + data.response.employers.length);
         res.send(data);
+    });
+});
+server.get('/indeed/:city/:state', function(req, res){
+    var city = req.params.city;
+    var state = req.params.state;
+    var searchRadius = "25";
+    var url = "http://api.indeed.com/ads/apisearch?publisher=" + env.indeed + "&q=" + encodeURI(searchTerm) + "&l=" + city + "%2C+" + state + "&sort=&radius=" + searchRadius + "&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2";
+    request({
+        uri: url,
+        method: "GET",
+        followRedirect: true,
+        maxRedirects: 5
+    }, function(error, response, body){
+
     });
 });
