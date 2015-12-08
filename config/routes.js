@@ -7,6 +7,8 @@ var methodOverride = require('method-override');
 var passport = require("passport");
 var usersController = require('../controllers/users');
 var staticsController = require('../controllers/statics');
+var dashboardController = require('../controllers/dashboard');
+var User            = require('../models/user');
 
 function authenticatedUser(req, res, next) {
     // If the user is authenticated, then we continue the execution
@@ -17,7 +19,8 @@ function authenticatedUser(req, res, next) {
   }
 
 router.route('/partners')
-  .get(staticsController.home);
+  .get(staticsController.home)
+  .get(usersController.showUsers)
 
 router.route('/partners/signup')
   .get(usersController.getSignup)
@@ -31,7 +34,8 @@ router.route("/partners/logout")
   .get(usersController.getLogout)
 
 router.route('/partners/dashboard')
-  .get(authenticatedUser, usersController.showDashboardForm)
-  .post(usersController.postDashboard)
+  .get(authenticatedUser, dashboardController.new)
+  .post(dashboardController.create)
+  .get(dashboardController.show)
 
 module.exports = router

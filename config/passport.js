@@ -56,3 +56,5 @@ var User            = require('../models/user');
      });
    }));
  }
+
+ //TODO add flash message for dashboard if user tries to click on it without being signed in
