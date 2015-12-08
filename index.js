@@ -40,11 +40,7 @@ server.get('/city_name', function(req, res) {
 });
 
 server.get('/glassdoor/:city/:state', function(req, res){
-    Glassdoor(req.params.city, req.params.state, function(err, data){
-        if (err) {
-            console.log(err);
-        }else {
-            res.send(data);
-        }
-    })
+    Glassdoor(req.params.city, req.params.state).then(function(data){
+        res.send(data);
+    });
 });

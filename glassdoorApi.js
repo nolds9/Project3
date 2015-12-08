@@ -46,7 +46,7 @@ function apiCall(url) {
     });
 };
 
-var returnThis = function apiCall(url).then(function(data) {
+var returnThis = apiCall(url, function(data){
     console.log("Session ID: " + data.jsessionid);
     console.log("User Searched for: " + city + ", " + state);
     console.log("Acutal Search Location: " + data.response.lashedLocation.longName);
@@ -60,3 +60,5 @@ var returnThis = function apiCall(url).then(function(data) {
     createEmployers(data.response.employers);
     return toUser;
 });
+
+module.exports = returnThis;
