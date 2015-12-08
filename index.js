@@ -8,6 +8,11 @@ app.use(bodyParser.json());
 app.set("view engine", "hbs");
 
 app.get("/", citiesController.index)
+app.get("/city/:name", function(req, res){
+    var cityName = decodeURIComponent(req.params.name);
+    // To follow MVC model, this should send data to Controller-->Model
+    res.JSON(City.find({"name": cityName}));
+})
 
 app.use(express.static(path.join(__dirname, "/public")));
 // app.use("/cities", require("./controllers/cities"));
