@@ -35,6 +35,19 @@ function getCityData(cityName) {
   return null;
 }
 
+function getInfoTable(keyValuePairs) {
+  var table = '<table class="info-table">';
+  // table += '<th>';
+  // for ( var i = 0; i < headingStringArray.length; i += 1 ) {
+  //   table += '<td>' + headingStringArray[i] + '</td>';
+  // }
+  table += '</th>';
+  for ( var j = 0; j < keyValuePairs.length; j += 1 ) {
+    table += '<tr><td>' + keyValuePairs[j][0] + '</td><td>' + keyValuePairs[j][1] + '</td></tr>';
+  }
+  return table + '</table>';
+}
+
 function setCityAsContender(cityName, $target) {
   var city = getCityData(cityName); // get the JSON for the city selected
   $target.empty();
@@ -42,12 +55,11 @@ function setCityAsContender(cityName, $target) {
     '<h1>' + city.name + '</h1>' +
     '<p class="weather">fetching weather</p>' +
     '<img src="' + city.gifUrl + '" class="city-image">' +
-    '<ul>' +
-      '<li>Average salary: $' + numberWithCommas(city.averageSalary) + '</li>' +
-      '<li>Number of jobs: ' + numberWithCommas(city.numJobs) + '</li>' +
-      '<li>Cost of living: ' + getCleveIndexString(city.costOfLiving) + '</li>' +
-    '</ul>'
-  );
+    getInfoTable([
+      ['Average salary', '$' + numberWithCommas(city.averageSalary) ],
+      ['Number of jobs', numberWithCommas(city.numJobs) ],
+      ['Cost of living', getCleveIndexString(city.costOfLiving) ]
+    ]));
 
   updateWeather(cityName, $target);
   // other API updates go here
