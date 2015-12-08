@@ -1,5 +1,3 @@
-var CITY_DIV_CLASS = 'city';
-
 var cities; // What's wrong with storing city data here for global use?
 
 function numberWithCommas(x) {
