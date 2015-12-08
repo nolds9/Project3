@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Anton);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 
 body {
   font-family: 'Anton', sans-serif;
@@ -25,7 +26,7 @@ main {
   width: 33%;
   border: solid 2px black;
   position: absolute;
-  height: 320px;
+  height: 400px;
   color: white;
   text-align: center;
 }
@@ -34,9 +35,14 @@ main {
   list-style: none;
 }
 
-/*.contender img.forecast-icon {
-  float: right;
-}*/
+p.weather {
+  font-size: 90%;
+  font-family: 'Roboto', sans-serif;
+}
+p.weather img, img.weather {
+  float:right;
+}
+
 
 .contender img.city-image {
   width: 200px;
@@ -46,12 +52,16 @@ main {
 #contender-left {
   top: 0;
   left: 80px;
-  background-color: blue;
+  background-color: darkblue;
 }
 #contender-right {
   top: 0;
   right: 80px;
-  background-color: red;
+  background-color: darkred;
+}
+
+.contender ul {
+  font-family: 'Roboto', sans-serif;
 }
 
 #center-arena {
