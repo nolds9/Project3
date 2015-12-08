@@ -6,7 +6,6 @@ var env = require('./env');
 mongoose.connect(env.mongoServer);
 
 var CityModel = require('./models');
-var Glassdoor = require('./glassdoorApi');
 
 var server = express();
 // server.use(bodyParser.json());
@@ -40,7 +39,20 @@ server.get('/city_name', function(req, res) {
 });
 
 server.get('/glassdoor/:city/:state', function(req, res){
-    Glassdoor(req.params.city, req.params.state).then(function(data){
-        res.send(data);
+    var Glassdoor = require('./glassdoorApi');
+    var request = require("request");
+    var env = require('./env.js');
+    var searchTerm = "web developer";
+    var jobsReviewsSalariesEmployers = ["jobs", "reviews", "salaries", "employers"];
+    var partnerKey = env.glassdoorKey;
+    var partnerID = env.glassdoorPartnerID
+    request({
+        uri: url,
+        method: "GET",
+        followRedirect: true,
+        maxRedirects: 5
+    }, function(error, response, body) {
+        var data = JSON.parse(body);
+        return data;
     });
 });
