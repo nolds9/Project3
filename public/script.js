@@ -6,12 +6,12 @@ function numberWithCommas(x) {
 
 function getCleveIndexString(index) {
   var indexRounded = Math.round(index * 100);
-  if ( indexRounded > 90 && indexRounded < 110 ) {
+  if ( indexRounded > 95 && indexRounded < 105 ) {
     return 'on par with Cleveland';
   } else if ( index > 1 ) {
-    return indexRounded + '% pricier than Cleveland';
+    return (indexRounded - 100) + '% pricier than Cleveland';
   } else {
-    return indexRounded + '% times cheaper than Cleveland';
+    return (100 - indexRounded) + '% cheaper than Cleveland';
   }
 }
 
