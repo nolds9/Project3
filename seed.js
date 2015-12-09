@@ -1,7 +1,13 @@
-var env = require('./env');
+var env; // config vars
+try {
+  env = require('./env'); // local development/testing with env.js
+} catch (exception) {
+  env = process.env; // production
+}
+
 var mongoose = require('mongoose');
 
-var mongoConnection = mongoose.connect(env.mongoServer);
+var mongoConnection = mongoose.connect(env.MONGO_SERVER || env.MONGOLAB_URI);
 
 // var models = require('./models');
 var CityModel = require('./models');  // as of now models is only CityModel
