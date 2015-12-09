@@ -50,7 +50,7 @@ server.get('/weather/:city/:state', function(req, res) {
   // var url = 'http://api.wunderground.com/api/' + env.wunderground_key + '/conditions/q/' + state + '/' + city + '.json';
   var url = 'http://api.wunderground.com/api/' + env.wunderground_key + '/forecast/q/' + state + '/' + city + '.json';
   request(url, function(error, response, body) {
-    if ( !error && response.statusCode == 200 ) {
+    if ( !error && response.statusCode == 200 ) { // if no error and status is OK
       var forecast = (JSON.parse(body).forecast.txt_forecast.forecastday)[0];
       res.json(forecast);
     }

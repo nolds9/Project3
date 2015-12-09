@@ -98,21 +98,20 @@ function listCities($target, citiesJson) {
   $target.empty(); // empty the target div before we (re-)popualte it
 
   // Iterate through each city provided in the JSON
-  for ( var i = 0; i < cities.length; i += 1 ) {
+  cities.forEach( function(city) {
     // add h3 element for each city name to city section (target)
-    $target.append('<h3>' + citiesJson[i].name + '</h3>');
+    $target.append('<h3>' + city.name + '</h3>');
     // get that last added h3 and add click event listener
     $('h3:last').on('click', function(e) {
       if ( clicks % 2 === 0 ) {
         $('#cities h3').removeClass('selected'); // deselect the cities on the bottom
       }
-      $(this).toggleClass('selected');
-      // setContender(this.);
-      // console.log(this.innerHTML); // show what city was clicked
-      clicks += 1;
+      $(this).toggleClass('selected'); // make this city look selected
+      clicks += 1; // increment click counter
+      // pass this city's name to setContender() to render to contender space
       setContender(this.innerHTML);
     });
-  }
+  });
 }
 
 $(document).ready( function() {
