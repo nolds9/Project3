@@ -35,12 +35,19 @@ main {
   list-style: none;
 }
 
-p.weather {
+/*p.weather {
   font-size: 90%;
   font-family: 'Roboto', sans-serif;
 }
 p.weather img, img.weather {
   float:right;
+}*/
+
+img.weather-icon {
+  /*float: right;*/
+  height: 1em;
+  width: auto;
+  vertical-align: middle;
 }
 
 table {
@@ -48,12 +55,14 @@ table {
 }
 
 .contender img.city-image {
-  width: 200px;
-  height: 150px;
+  max-width: 94%;
+  max-height: 160px;
 }
 
-.contender h1 {
+.contender h2 {
+  /*vertical-align: middle;*/
   letter-spacing: 2px;
+  font-size: 160%;
 }
 
 #contender-left {

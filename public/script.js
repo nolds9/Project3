@@ -23,10 +23,12 @@ var clicks = 0; // counts the number of clicks on cities
 // helper function for ajax call to get weather JSON
 function updateWeather(cityName, $target) { // get custom JSON element for city
   $.getJSON('/weather/' + cityName.split(',')[0] + '/' + cityName.split(', ')[1], function(json) {
-    var $weatherEl = $target.find('p.weather');
-    $weatherEl.empty();
-    $weatherEl.append('<img src="' + json.icon_url  + '">');
-    $weatherEl.append(json.fcttext);
+    // var $weatherEl = $target.find('p.weather');
+    // $weatherEl.empty();
+    // $weatherEl.append('<img src="' + json.icon_url  + '">');
+    $target.find('h2').append('<img src="' + json.icon_url  + '" class="weather-icon">');
+    // $weatherEl.append(json.fcttext);
+    addRowToTable('Weather', json.fcttext, $target);
   });
 }
 
@@ -38,6 +40,11 @@ function getCityData(cityName) { // e.g. cityName == 'Washington, DC'
   }
   console.log('Error: city not found.');
   return null;
+}
+
+// Helper function to add row to table
+function addRowToTable(cell1, cell2, $target) {
+  $target.find('table').append('<tr><td>' + cell1 + '</td><td>' + cell2 + '</td></tr>');
 }
 
 // Helper function to make table with given dataset as key value pairs
@@ -56,8 +63,7 @@ function setCityAsContender(cityName, $target) {
   var city = getCityData(cityName); // get the JSON for the city selected
   $target.empty();
   $target.append(
-    '<h1>' + city.name + '</h1>' +
-    '<p class="weather">fetching weather</p>' +
+    '<h2>' + city.name + '</h2>' +
     '<img src="' + city.gifUrl + '" class="city-image">' +
     getInfoTable([
       ['Average salary', '$' + numberWithCommas(city.averageSalary) ],
