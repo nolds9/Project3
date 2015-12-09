@@ -9,6 +9,8 @@ var usersController = require('../controllers/users');
 var staticsController = require('../controllers/statics');
 var dashboardController = require('../controllers/dashboard');
 var User            = require('../models/user');
+// var dashboardItems = require('../models/dashboard');
+
 
 function authenticatedUser(req, res, next) {
     // If the user is authenticated, then we continue the execution
@@ -20,7 +22,6 @@ function authenticatedUser(req, res, next) {
 
 router.route('/partners')
   .get(staticsController.home)
-  .get(usersController.showUsers)
 
 router.route('/partners/signup')
   .get(usersController.getSignup)
