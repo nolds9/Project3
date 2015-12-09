@@ -1,25 +1,21 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
-
-var DashboardItem = new mongoose.Schema({
-  partner_message: String,
-  partner_link: String,
-  city: String
-});
-
+var dashboardItems = require('../models/dashboard');
+var Schema = mongoose.Schema
+var ObjectId = Schema.ObjectId;
 
 var User = new mongoose.Schema({
   local : {
     email        : String,
     password     : String,
   },
-  dashboardItem : [{
+  dashboardItems : [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "DashboardItem"
   }]
 });
 
-// var ObjectId = Schema.ObjectId;
+
 // localhost:3000/users/abc123456
 // app.get("/users/:id", function(req, res){
 //   User.findOneById(req.params.id).then(function(err, user){

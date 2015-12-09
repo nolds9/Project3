@@ -36,6 +36,6 @@ router.route("/partners/logout")
 router.route('/partners/dashboard')
   .get(authenticatedUser, dashboardController.new)
   .post(dashboardController.create)
-  .get(dashboardController.show)
+  // .get(dashboardController.show)
 
-module.exports = router
+module.exports = router;

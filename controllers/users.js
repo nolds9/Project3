@@ -61,5 +61,5 @@ module.exports = {
   getSignup: getSignup,
   postSignup: postSignup,
   getLogout: getLogout,
-  showUsers: showUsers
+  // showUsers: showUsers
 }
