@@ -14,7 +14,7 @@ main {
 
 #arena {
   width: 100%;
-  height: 500px;
+  height: 500x;
   postion: relative;
 }
 
@@ -23,10 +23,10 @@ main {
 }
 
 .contender {
-  width: 33%;
+  max-width: 50%;
   border: solid 2px black;
   position: absolute;
-  height: 480px;
+  height: auto;
   color: white;
   text-align: center;
   box-shadow: -5px 5px 5px #aaa;
