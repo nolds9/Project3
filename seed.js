@@ -1,4 +1,10 @@
-var env = require('./env');
+var env; // config vars
+try {
+  env = require('./env'); // local development/testing
+} catch (exception) {
+  env = process.env; // production
+}
+
 var mongoose = require('mongoose');
 
 var mongoConnection = mongoose.connect(env.mongoServer);

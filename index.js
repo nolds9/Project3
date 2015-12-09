@@ -2,8 +2,14 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
-var env = require('./env');
-mongoose.connect(env.mongoServer);
+var env; // config vars
+try {
+  env = require('./env'); // local development/testing
+} catch (exception) {
+  env = process.env; // production
+}
+
+mongoose.connect(env.mongoServer || env.MONGOLAB_URI);
 
 var CityModel = require('./models');
 
