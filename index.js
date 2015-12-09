@@ -3,11 +3,13 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
 var env; // config vars
-try {
+try { // check if we have a local env.js
   env = require('./env'); // local development/testing with env.js
-} catch (exception) {
-  env = process.env; // production
+} catch (exception) { // if not, let's assume we're in production
+  env = process.env; // production config vars will be used
 }
+// here'a tip for further environment config:
+// https://github.com/strongloop/express/wiki/Migrating-from-3.x-to-4.x#appconfigure
 
 mongoose.connect(env.MONGO_SERVER || env.MONGOLAB_URI);
 
@@ -19,7 +21,8 @@ var path = require('path'); // needed for path.join function on next line
 server.use(express.static(path.join(__dirname, 'public'))); // FIXME
 
 server.listen(env.PORT || 4000, function() {
-  console.log('Server listening on port 4000');
+  if (!env.PORT)
+    console.log('Server listening on port 4000');
 });
 
 server.get('/cities.json', function(req, res) {
