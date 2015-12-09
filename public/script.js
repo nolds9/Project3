@@ -77,11 +77,15 @@ function setCityAsContender(cityName, $target) {
 
 // Counts clicks, delegates rendering of contender cities to left or right
 function setContender(cityName) {
-  // console.log(clicks);
+  var $contenderRight = $('#contender-right');
+  var $contenderLeft = $('#contender-left');
   if ( clicks % 2 === 1 ) { // set contender on left
-    $('#contender-right').append('<p class="init">?</p>').empty();
-    setCityAsContender(cityName, $('#contender-left'));
+    $contenderRight.empty();
+    $contenderRight.append('<p class="init">?</p>');
+    $contenderLeft.toggle().toggle();
+    setCityAsContender(cityName, $contenderLeft);
   } else { // set contender on right and compare...
+    $contenderRight.toggle().toggle();
     setCityAsContender(cityName, $('#contender-right'));
   }
 }
