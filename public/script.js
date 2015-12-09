@@ -121,11 +121,15 @@ function listCities($target, citiesJson) {
 function addIndeedData(cityName, $target){
     var city = cityName.split(',')[0];
     var state = cityName.split(', ')[1];
+    var numJobs = $target.find('td')[3];
+    var indeedNumber;
     $.getJSON('/indeed/' + city + '/' + state, function(json) {
-        var cell2 = json.response.totalresults;
-        var cell1 = "Jobs on Indeed.com:";
-        addRowToTable(cell1, cell2, $target);
-    });
+        indeedNumber = json.response.totalresults;
+    }).then(function(){
+        if (indeedNumber) {
+        numJobs.innerHTML=numberWithCommas(indeedNumber);
+    };
+});
 }
 
 function addMeMuchoGusto($container){
@@ -156,7 +160,7 @@ function getEmployers(cityName, $target){
         }
     }
     $.getJSON('/glassdoor/' + city + '/' + state, function(json) {
-        var glassdoorString = "Sample of Employers: ";
+        var glassdoorString = "Employers on Glassdoor: ";
         var numJobs = json.response.totalRecordCount;
         addRowToTable(glassdoorString, numJobs, $target);
         createEmployers(json.response.employers);
