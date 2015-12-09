@@ -70,7 +70,6 @@ function setCityAsContender(cityName, $target) {
       ['Number of jobs', numberWithCommas(city.numJobs) ],
       ['Cost of living', getCleveIndexString(city.costOfLiving) ]
     ]));
-
   updateWeather(cityName, $target);
   getEmployers(cityName, $target);
   addIndeedData(cityName, $target);
@@ -85,9 +84,11 @@ function setContender(cityName) {
     $contenderRight.append('<p class="init">?</p>');
     $contenderLeft.toggle().toggle();
     setCityAsContender(cityName, $contenderLeft);
+    addMeMuchoGusto($contenderLeft);
   } else { // set contender on right and compare...
     $contenderRight.toggle().toggle();
     setCityAsContender(cityName, $('#contender-right'));
+    addMeMuchoGusto($contenderRight);
   }
 }
 
@@ -120,8 +121,16 @@ function addIndeedData(cityName, $target){
     var city = cityName.split(',')[0];
     var state = cityName.split(', ')[1];
     $.getJSON('/indeed/' + city + '/' + state, function(json) {
-        var numJobs = json.response.totalresults;
-        $target.find('.info-table').append('<li>Number of Web Developer Jobs within 25 miles: ' + numJobs + ' (powered by Indeed.com)</li>');
+        var cell2 = json.response.totalresults;
+        var cell1 = "Jobs on Indeed";
+        addRowToTable(cell1, cell2, $target);
+    });
+}
+
+function addMeMuchoGusto($container){
+    $container.append("<div class='meMuchoGusto'>Click for More!</div>");
+    $('.meMuchoGusto').on("click", function(){
+        alert('OMG WHY?');
     });
 }
 
@@ -146,13 +155,14 @@ function getEmployers(cityName, $target){
         }
     }
     $.getJSON('/glassdoor/' + city + '/' + state, function(json) {
-        $target.find('.info-table').append('<p>Current number of employers looking to hire: ' + json.response.totalRecordCount + '</p><br><ul><p>Examples of employers from Glassdoor: </p>');
+        var glassdoorString = "# Employers Hiring on Glasdoor: ";
+        var numJobs = json.response.totalRecordCount;
+        addRowToTable(glassdoorString, numJobs, $target);
         createEmployers(json.response.employers);
         for (var i = 0; i < employers.length; i++) {
-            $target.find('.info-table').append('<li><a class="employer" href=http://' + employers[i].website + '>' +  employers[i].name + '</a></li>');
-            if (i === employers.length){
-                $target.find('.info-table').append('</ul>');
-            };
+            var cell1 = "<img src='" + employers[i].logo + "' alt=''" + employers[i].name + "'s logo'' height='50rem' width='50rem'>";
+            var cell2 = "<a class='employer' href=http://" + employers[i].website + ">" +  employers[i].name + "</a>";
+            addRowToTable(cell1, cell2, $target);
         };
     });
 }

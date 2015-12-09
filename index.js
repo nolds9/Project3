@@ -55,9 +55,6 @@ server.get('/glassdoor/:city/:state', function(req, res) {
         var data = JSON.parse(body);
         console.log("Session ID: " + data.jsessionid);
         console.log("User Searched for: " + city + ", " + state);
-        console.log("Acutal Search Location: " + data.response.lashedLocation.longName);
-        console.log("number of Employers looking for Web Developers: " + data.response.totalRecordCount);
-        console.log("length of employer results: " + data.response.employers.length);
         res.send(data);
     });
 });
