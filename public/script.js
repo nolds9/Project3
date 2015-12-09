@@ -73,6 +73,7 @@ function setCityAsContender(cityName, $target) {
 
   updateWeather(cityName, $target);
   getEmployers(cityName, $target);
+  addIndeedData(cityName, $target);
 }
 
 // Counts clicks, delegates rendering of contender cities to left or right
@@ -115,12 +116,13 @@ function listCities($target, citiesJson) {
   }
 }
 
-function convertCityName(cityName){
-    var splitName = cityName.split
-}
-
 function addIndeedData(cityName, $target){
-    
+    var city = cityName.split(',')[0];
+    var state = cityName.split(', ')[1];
+    $.getJSON('/indeed/' + city + '/' + state, function(json) {
+        var numJobs = json.response.totalresults;
+        $target.find('.info-table').append('<li>Number of Web Developer Jobs within 25 miles: ' + numJobs + ' (powered by Indeed.com)</li>');
+    });
 }
 
 function getEmployers(cityName, $target){
@@ -144,11 +146,13 @@ function getEmployers(cityName, $target){
         }
     }
     $.getJSON('/glassdoor/' + city + '/' + state, function(json) {
-        $target.find('.info-table').append('<p>Current number of employers looking to hire: ' + json.response.totalRecordCount + '</p><br><p>Examples of employers from Glassdoor: </p>');
+        $target.find('.info-table').append('<p>Current number of employers looking to hire: ' + json.response.totalRecordCount + '</p><br><ul><p>Examples of employers from Glassdoor: </p>');
         createEmployers(json.response.employers);
         for (var i = 0; i < employers.length; i++) {
-            //
-            $target.find('.info-table').append('<a class="employer" href=http://' + employers[i].website + '>' +  employers[i].name + '</a>');
+            $target.find('.info-table').append('<li><a class="employer" href=http://' + employers[i].website + '>' +  employers[i].name + '</a></li>');
+            if (i === employers.length){
+                $target.find('.info-table').append('</ul>');
+            };
         };
     });
 }
