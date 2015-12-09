@@ -73,6 +73,7 @@ function setCityAsContender(cityName, $target) {
   updateWeather(cityName, $target);
   getEmployers(cityName, $target);
   addIndeedData(cityName, $target);
+  // reconfigureScreen();
 }
 
 // Counts clicks, delegates rendering of contender cities to left or right
@@ -122,7 +123,7 @@ function addIndeedData(cityName, $target){
     var state = cityName.split(', ')[1];
     $.getJSON('/indeed/' + city + '/' + state, function(json) {
         var cell2 = json.response.totalresults;
-        var cell1 = "Jobs on Indeed";
+        var cell1 = "Jobs on Indeed.com:";
         addRowToTable(cell1, cell2, $target);
     });
 }
@@ -155,7 +156,7 @@ function getEmployers(cityName, $target){
         }
     }
     $.getJSON('/glassdoor/' + city + '/' + state, function(json) {
-        var glassdoorString = "# Employers Hiring on Glasdoor: ";
+        var glassdoorString = "Sample of Employers: ";
         var numJobs = json.response.totalRecordCount;
         addRowToTable(glassdoorString, numJobs, $target);
         createEmployers(json.response.employers);
@@ -167,8 +168,18 @@ function getEmployers(cityName, $target){
     });
 }
 
+// function reconfigureScreen(){
+//     if ((document.getElementById('arena').style.height) > (window.innerHeight)) {
+//         document.getElementById('cities').style.width = "100px";
+//         document.getElementById('cities').style.height = "auto";
+//     };
+// }
+
 $(document).ready( function() {
 
+    $('#whyCleveland').on("click", function(){
+        alert("The Cleveland Index:  Using open-source data, we have compared the CPI of each of the cities used in this app to that of Cleveland. We have done this to avoid paying an outrageous fee. We chose Cleveland, Ohio because it seems like it's a pretty average place. At the time of writing, a member of the development team is scheduled perform an in-person analysis of this hypothesis.");
+    });
   // Seems that this jQuery selector must be set here
   var $citiesSection = $('#cities');
 
