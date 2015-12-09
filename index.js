@@ -18,7 +18,7 @@ var server = express();
 var path = require('path'); // needed for path.join function on next line
 server.use(express.static(path.join(__dirname, 'public'))); // FIXME
 
-server.listen(4000, function() {
+server.listen(env.PORT || 4000, function() {
   console.log('Server listening on port 4000');
 });
 
