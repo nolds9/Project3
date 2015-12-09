@@ -5,8 +5,8 @@ var bodyParser = require('body-parser');
 var env; // config vars
 try { // check if we have a local env.js
   env = require('./env'); // local development/testing with env.js
-} catch (exception) { // if not, let's assume we're in production
-  env = process.env; // production config vars will be used
+} catch (localEnvJsNotPresentException) { // if not, let's assume we're in production
+  env = process.env; // use the environment's config vars
 }
 // here'a tip for further environment config:
 // https://github.com/strongloop/express/wiki/Migrating-from-3.x-to-4.x#appconfigure
@@ -22,7 +22,8 @@ server.use(express.static(path.join(__dirname, 'public'))); // FIXME
 
 server.listen(env.PORT || 4000, function() {
   if (!env.PORT)
-    console.log('Server listening on port 4000');
+    console.log('Make sure port is included in config vars or env.js. ' +
+    'Server listening on port 4000.');
 });
 
 server.get('/cities.json', function(req, res) {
