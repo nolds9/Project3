@@ -15,15 +15,6 @@ function getSignup(request, response) {
     return signupStrategy(request, response);
   };
 
-//Probably won't use this, meant to show all the users.
-  // function showUsers(request, response){
-  //   users.find({}, function(err, docs){
-  //     console.log(users)
-  //     response.render("/partners", {users: docs})
-  //   })
-  // };
-
-
 // GET /login
 function getLogin(request, response) {
   response.render('login.hbs', { message: request.flash('loginMessage') });
@@ -51,5 +42,4 @@ module.exports = {
   getSignup: getSignup,
   postSignup: postSignup,
   getLogout: getLogout,
-  // showUsers: showUsers
 }

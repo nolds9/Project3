@@ -2,54 +2,32 @@
 
 <form method="post" action="/partners/dashboard">
   <div class="form-group">
-    <label for="Message">Your Message</label>
+    <label for="Message">Your Message:</label>
     <input class="form-control" type="text" name="partner_message" maxlength="30">
   </div>
 
   <div class="form-group">
-    <label for="url">Your Link</label>
+    <label for="url">Your Link:</label>
     <input class="form-control" type="text" name="partner_link" maxlength="30">
   </div>
 
-  <label for="Cities">Choose a City</label>
-  <select name="city">
-    <option value="">Choose City</option>
-  <!--  TODO make "Choose City" not a value-->
-    <option value="Seattle">Seattle</option>
-    <option value="Los Angeles">Los Angeles</option>
-    <option value="New York">New York</option>
-    <option value="Atlanta">Atlanta</option>
-    <option value="San Francisco">San Francisco</option>
-    <option value="Chicago">Chicago</option>
-    <option value="Washington, DC">Washington, DC</option>
-    <option value="Boston">Boston</option>
-    <option value="St. Louis">St. Louis</option>
-    <option value="Madison, Wisconsin">Madison, Wisconsin</option>
-    <option value="Huntsville">Huntsville, Alabama</option>
-    <option value="Dallas">Dallas</option>
-    <option value="Cedar Rapis, Iowa">Cedar Rapids, Iowa</option>
-    <option value="Raleigh-Durham">Raleigh-Durham</option>
-    <option value="Austin">Austin</option>
-    <option value="Miami">Miami</option>
-    <option value="Denver">Denver</option>
-    <option value="Minneapolis">Minneapolis</option>
-  </select>
+  <label for="Cities">Choose a City:</label>
+  <select name="city_name" required="true">
+   <option selected disabled>Select City</option>
+   {{#each cities}}
+     <option value="{{name}}">{{name}}</option>
+   {{/each}}
+ </select>
 
   <input class="button" type="submit">
 </form>
 
-<!-- TODO put in some handlebars stuff to display each dashboard item -->
 <h2>Active Messages</h2>
-<!-- {{#if dashboardItems}}
-  <p>dashboardItems is here</p>
-{{else}}
-  <p>dashboardItems not sent</p>
-{{/if}} -->
-<!-- {{currentUser}} -->
+
 <ul class="db_list">
   {{#each currentUser.dashboardItems}}
-  <li>{{partner_message}}  -  {{partner_link}}</li>
-  <form method = "POST" action = '/partners/dashboard?_method=DELETE'>
+  <li>{{partner_message}}  -  {{partner_link}}  -  {{city}}</li>
+  <form method = "POST" action = '/partners/dashboard/{{this._id}}?_method=DELETE'>
    <input type='hidden' name="delete-db-item" value='{{this}}' >
     <button type='submit'>Delete</button>
 </form>

@@ -47,10 +47,10 @@ var User            = require('../models/user');
          return callback(err);
        }
        if(!user){
-         return callback(null, false, req.flash('loginMessage', 'No User Found'))
+         return callback(null, false, req.flash('loginMessage', 'No User Found!'))
        }
        if (!user.validPassword(password)) {
-         return callback(null, false, req.flash('loginMessage','Oops! wrong password, Jackass!!'))
+         return callback(null, false, req.flash('loginMessage','Oops! Wrong password!'))
        }
        return callback(null, user);
      });

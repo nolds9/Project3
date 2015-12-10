@@ -1,5 +1,7 @@
 var DashboardItem = require('../models/dashboard');
-var User            = require('../models/user');
+var User          = require('../models/user');
+var CityModel     = require('../models')
+var mongodb = require('mongodb');
 // var mongoose = require('mongoose');
 // var Schema = mongoose.Schema;
 // var ObjectId = Schema.ObjectId;
@@ -8,7 +10,9 @@ var dashboardController = {
 
 new: function(request, response){
   request.user.populate("dashboardItems", function (){
-    response.render('dashboard.hbs')
+    CityModel.find({}, function (err, cities){
+    response.render('dashboard.hbs', {cities: cities})
+    })
   })
 },
 
@@ -19,53 +23,27 @@ create: function (request, response) {
     city: request.body.city
   });
   newDash.save()
-    User.findOne({_id: request.user._id}, function(err, doc){
+    User.findOne({_id: request.user.id}, function(err, doc){
       doc.dashboardItems.push(newDash)
         doc.save(function(){
           response.redirect('/partners/dashboard')
         })
       });
   },
-//
-// index: function (request, response){
-//   // User.find({}, function(err, docs){
-//   //   if (err) {
-//   //     console.log(err);
-//   //   } else {
-//   //     response.render('/partners/dashboard', "banana"})
-//   //   }
-//   }
+
 destroy: function(request, response){
   // find the dashboard item
-  var dbItems = request.user.dashboardItems
-  // console.log(request.user)
-  // console.log(dbItems)
-  DashboardItem.update(
-    { _id: request.body.id },
-    { $pull: { _id: request.body.id } }
-  ).then(function(err, doc){
-  console.log(err, doc)
-});
-  // dbItems.remove(function(err){
-  //   if (err){
-  //     console.log(err)
-  //   } else {
-  //     response.redirect('/partners/dashboard')
-  //   }
-  // });
-  response.redirect('/partners/dashboard')
-  //
-}
+  var dbItem = DashboardItem.findOne({_id: request.params.id}, function(err, doc){
+    if (!err){
+      doc.remove(function(err){
+        response.redirect('/partners/dashboard')
+      })
+    } else {
+      console.log(err)
+    }
 
-  // response.render('dashboard.hbs', Users.findOne({_id: request.user._id}, function(err, doc) {
-    // doc.dashboardItems
-// })
-// )
+  })
+}
 
 }
 module.exports = dashboardController;
-
-
-// DashboardItem.find({city: "Seattle"}).then(function(err, dbitems){
-//
-// })
