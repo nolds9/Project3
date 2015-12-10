@@ -222,3 +222,22 @@ server.get('/citybikes/:city/:state', function(req, res) {
     } else { console.log('Error:', error); }
   });
 });
+
+// github jobs
+server.get('/githubjobs/:city/:state', function(req, res) {
+  var state = req.params.state;
+  var city = req.params.city;
+  var url = 'https://jobs.github.com/positions.json?description=web%20developer&location=' + city + ', ' + state;
+  request(url, function(error, response, body) {
+    if ( !error && response.statusCode == 200 ) { // if no error and status is OK
+      var jobs = JSON.parse(body).map(function(job) {
+        return {
+          title: job.title,
+          company: job.company,
+          url: job.url
+        };
+      });
+      res.json(jobs);
+    }
+  });
+});
