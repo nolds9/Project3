@@ -52,8 +52,8 @@ server.get('/city_name', function(req, res) {
 server.get('/glassdoor/:city/:state', function(req, res) {
     var searchTerm = "web developer";
     var jobsReviewsSalariesEmployers = ["jobs", "reviews", "salaries", "employers"];
-    var partnerKey = env.glassdoorKey;
-    var partnerID = env.glassdoorPartnerID;
+    var partnerKey = env.GLASSDOOR_KEY;
+    var partnerID = env.GLASSDOOR_PARTNER_ID;
     var city = req.params.city;
     var state = req.params.state;
     var url = "http://api.glassdoor.com/api/api.htm?t.p=" + partnerID + "&t.k=" + partnerKey + "&userip=50.200.196.50&useragent=&format=json&v=1&action=" + jobsReviewsSalariesEmployers[3] + "&q=" + encodeURI(searchTerm) + "&city=" + city + "&state=" + state + "&ps=1000/";
@@ -75,7 +75,7 @@ server.get('/indeed/:city/:state', function(req, res) {
     var state = req.params.state;
     var searchRadius = "25";
     var searchTerm = "web developer";
-    var url = "http://api.indeed.com/ads/apisearch?publisher=" + env.indeed + "&q=" + encodeURI(searchTerm) + "&l=" + city + "%2C+" + state + "&sort=&radius=" + searchRadius + "&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2";
+    var url = "http://api.indeed.com/ads/apisearch?publisher=" + env.INDEED_PUB_ID + "&q=" + encodeURI(searchTerm) + "&l=" + city + "%2C+" + state + "&sort=&radius=" + searchRadius + "&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2";
     request({
         uri: url,
         method: "GET",
