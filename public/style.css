@@ -11,10 +11,21 @@ h1 {
 main {
   position: relative;
 }
+footer {
+    position: fixed;
+    bottom: 0;
+    left: auto;
+    width: 100%;
+    background: white;
+}
+
+a {
+    color: hotpink;
+}
 
 #arena {
   width: 100%;
-  height: 500px;
+  min-height: 500px;
   postion: relative;
 }
 
@@ -23,10 +34,11 @@ main {
 }
 
 .contender {
-  width: 33%;
+    min-width: 33%;
+  max-width: 40%;
   border: solid 2px black;
   position: absolute;
-  height: 480px;
+  min-height: 480px;
   color: white;
   text-align: center;
   box-shadow: -5px 5px 5px #aaa;
@@ -52,7 +64,13 @@ img.weather-icon {
 }
 
 table {
-  font-family: 'Roboto', sans-serif;
+  padding-bottom: 400px;
+  color: white;
+}
+
+tr {
+    padding: 5px, 5px, 5px, 5px;
+    margin: 0 auto;
 }
 
 .contender img.city-image {
@@ -92,10 +110,11 @@ table {
   margin-top: 0; // get rid of that empty space
 }
 
-
 #cities {
   background-color: lightgray;
-  position: relative;
+  position: fixed;
+  bottom: 20px;
+  max-height: 400px;
 }
 
 #cities h3 {
@@ -123,6 +142,31 @@ table {
         -ms-animation: fadein 2s; /* Internet Explorer */
          -o-animation: fadein 2s; /* Opera < 12.1 */
             animation: fadein 2s;
+}
+
+.meMuchoGusto {
+    z-index: 2;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: orange;
+    color: red;
+}
+
+.popAndLock {
+    position: fixed;
+    z-index: 3;
+    padding: 0;
+    margin: 0 auto;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    background: #4d4d4d;
+    color: #00FF00;
+}
+
+.popAndLock, table, a {
+    font-family: monaco, Consolas, 'Lucida Console', monospace;
 }
 
 @keyframes fadein {
