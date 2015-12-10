@@ -32,6 +32,40 @@ function updateWeather(cityName, $target) { // get custom JSON element for city
     });
 }
 
+function updateTruliaInfo(cityName, $target) {
+  $.getJSON('/trulia/' + cityName.split(',')[0] + '/' + cityName.split(', ')[1], function(json) {
+    var trulia = '<a href="' + json.searchResultsURL + '">Trulia</a>';
+    var displayHTML =
+      '$' + numberWithCommas(json.avgListing) + ' / ' +
+      '$' + numberWithCommas(json.medianListing) + '</a>';
+    addRowToTable('2-bdrm avg/median home listing prices by ' + trulia, displayHTML, $target);
+  });
+}
+
+function updateZillowChart(cityName, $target) {
+  $.getJSON('/zillow/' + cityName.split(',')[0] + '/' + cityName.split(', ')[1], function(json) {
+    var zillow = 'Home prices by <a href="' + json.ref_link + '">Zillow</a>';
+    var displayHTML = '<a href="' + json.ref_link + '"><img src="' + json.chart_url + '"></a>';
+    addRowToTable('2-bdrm avg/median home listing prices by ' + zillow, displayHTML, $target);
+  });
+}
+
+function updateCityBikesInfo(cityName, $target) {
+  var url = '/citybikes/' + cityName.split(',')[0] + '/' + cityName.split(', ')[1];
+  $.getJSON(url, function(json) {
+    console.log(url, json);
+    var trulia = '<a href="' + json.searchResultsURL + '">Trulia</a>';
+    var displayHTML;
+    if (json.name == 'nada') {
+      addRowToTable('bicycle sharing', 'not yet?', $target);
+    } else {
+      displayHTML = json.name + ': ' + numberWithCommas(json.bike_stations) +
+      ' bike stations, ' + numberWithCommas(json.bikes_free) + ' bikes ready to go right now';
+      addRowToTable('bicycle sharing', displayHTML, $target);
+    }
+  });
+}
+
 // helper function to get individual JSON data for given city string
 function getCityData(cityName) { // e.g. cityName == 'Washington, DC'
     for (var i = 0; i < cities.length; i += 1) {
@@ -73,6 +107,10 @@ function setCityAsContender(cityName, $target) {
         ]));
     addIndeedData(cityName, $target);
     // reconfigureScreen();
+
+    updateTruliaInfo(cityName, $target);
+    updateZillowChart(cityName, $target);
+    updateCityBikesInfo(cityName, $target);
 }
 
 // Counts clicks, delegates rendering of contender cities to left or right
