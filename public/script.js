@@ -148,7 +148,7 @@ function addMeMuchoGusto($container) {
         $contender.find('.meMuchoGusto').hide();
         updateWeather(cityName, $contender);
         getEmployers(cityName, $contender);
-        $contender.find('h2').append("<h1 class='exitButton'>X</h1>");
+        $contender.find('h2').prepend("<p class='exitButton'>{X}</p>");
         $('.exitButton').on("click", function(){
             exitPop($contender, savedId);
         });

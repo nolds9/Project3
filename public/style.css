@@ -18,6 +18,11 @@ footer {
     width: 100%;
     background: white;
 }
+
+a {
+    color: hotpink;
+}
+
 #arena {
   width: 100%;
   min-height: 500px;
@@ -59,8 +64,13 @@ img.weather-icon {
 }
 
 table {
-  font-family: 'Roboto', sans-serif;
   padding-bottom: 400px;
+  color: white;
+}
+
+tr {
+    padding: 5px, 5px, 5px, 5px;
+    margin: 0 auto;
 }
 
 .contender img.city-image {
@@ -153,6 +163,10 @@ table {
     height: 100%;
     background: #4d4d4d;
     color: #00FF00;
+}
+
+.popAndLock, table, a {
+    font-family: monaco, Consolas, 'Lucida Console', monospace;
 }
 
 @keyframes fadein {
