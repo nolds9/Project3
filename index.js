@@ -317,3 +317,16 @@ server.get('/githubjobs/:city/:state', function(req, res) {
   });
 
 });
+
+server.get('/partners/:cityName', function(req, res) {
+  var city = req.params.cityName;
+  var DashboardItem = require('./models/dashboard');
+  DashboardItem.find( {city: decodeURI(city)}, function(err, docs) {
+    if (err) {
+        console.log(err);
+    } else {
+      console.log(docs);
+      res.json(docs);
+    }
+  });
+});

@@ -1,4 +1,3 @@
-
 // What's wrong with storing city data here for global use?
 var cities; // filled by ajax request in listCities()
 
@@ -139,7 +138,7 @@ function addMeMuchoGusto($container) {
     var savedId;
     $container.append("<div class='meMuchoGusto'>Click for More!</div>");
     $('.meMuchoGusto').on("click", function() {
-        var identity = $(this.parentElement).eq(0).attr('id').val;
+        var identity = $(this.parentElement).eq(0).attr('id');
         var $contender = $(this.parentElement).eq(0);
         var cityName = $contender.find('h2')[0].innerHTML;
         savedId = $contender.attr('id').toString();
@@ -150,17 +149,18 @@ function addMeMuchoGusto($container) {
         updateWeather(cityName, $contender);
         getEmployers(cityName, $contender);
         $contender.find('h2').prepend("<p class='exitButton'>{X}</p>");
-        $('.exitButton').on("click", function(){
+        $('.exitButton').on("click", function() {
             exitPop($contender, savedId);
         });
+        getPaidContent(cityName, $contender);
     });
 }
 
-//  MAKE SURE THIS IS ADDING EVERYTHIGN BACK!
 function exitPop($contender, savedId) {
     $contender.toggleClass('popAndLock', false);
     $contender.addClass('contender');
     $contender.attr('id', savedId);
+    $contender.find(".adds").eq(0).remove();
     var extraTrNums = function() {
         var a = [];
         var trs = $contender.find('tr').length;
@@ -169,57 +169,68 @@ function exitPop($contender, savedId) {
         };
         return a;
     };
-    $($contender.find('tr')[extraTrNums]).remove();
-    $contender.find('.meMuchoGusto').show();
-    $('.exitButton').remove();
-}
-
-// Glassdoor API call
-function getEmployers(cityName, $target) {
-    var city = cityName.split(',')[0];
-    var state = cityName.split(', ')[1];
-    var employers = [];
-    var Employer = function(data) {
-        this.name = data.name,
-            this.website = data.website,
-            this.industry = data.industry,
-            this.logo = data.squareLogo,
-            this.numRatings = data.numberOfRatings,
-            this.rating = data.overallRating,
-            this.ratingDescription = data.ratingDescription,
-            this.featuredReview = data.featuredReview
+    $contender.find('tr').eq(extraTrNums).remove(); $contender.find('.meMuchoGusto').show(); $('.exitButton').remove();
     }
 
-    function createEmployers(data) {
-        for (var i = 0; i < data.length; i++) {
-            var employer = new Employer(data[i]);
-            employers.push(employer);
+    // Glassdoor API call
+    function getEmployers(cityName, $target) {
+        var city = cityName.split(',')[0];
+        var state = cityName.split(', ')[1];
+        var employers = [];
+        var Employer = function(data) {
+            this.name = data.name,
+                this.website = data.website,
+                this.industry = data.industry,
+                this.logo = data.squareLogo,
+                this.numRatings = data.numberOfRatings,
+                this.rating = data.overallRating,
+                this.ratingDescription = data.ratingDescription,
+                this.featuredReview = data.featuredReview
         }
+
+        function createEmployers(data) {
+            for (var i = 0; i < data.length; i++) {
+                var employer = new Employer(data[i]);
+                employers.push(employer);
+            }
+        }
+        $.getJSON('/glassdoor/' + city + '/' + state, function(json) {
+            var glassdoorString = "Employers on Glassdoor: ";
+            var numJobs = json.response.totalRecordCount;
+            addRowToTable(glassdoorString, numJobs, $target);
+            createEmployers(json.response.employers);
+            for (var i = 0; i < employers.length; i++) {
+                var cell1 = "<img src='" + employers[i].logo + "' alt=''" + employers[i].name + "'s logo'' height='50rem' width='50rem'>";
+                var cell2 = "<a class='employer' href=http://" + employers[i].website + ">" + employers[i].name + "</a>";
+                addRowToTable(cell1, cell2, $target);
+            };
+        });
     }
-    $.getJSON('/glassdoor/' + city + '/' + state, function(json) {
-        var glassdoorString = "Employers on Glassdoor: ";
-        var numJobs = json.response.totalRecordCount;
-        addRowToTable(glassdoorString, numJobs, $target);
-        createEmployers(json.response.employers);
-        for (var i = 0; i < employers.length; i++) {
-            var cell1 = "<img src='" + employers[i].logo + "' alt=''" + employers[i].name + "'s logo'' height='50rem' width='50rem'>";
-            var cell2 = "<a class='employer' href=http://" + employers[i].website + ">" + employers[i].name + "</a>";
-            addRowToTable(cell1, cell2, $target);
+
+    function getPaidContent(cityName, $target) {
+        function addAdds(json) {
+            var a = [];
+            for (var i = 0; i < json.length; i++) {
+                a.push("<li><a href='http://" + json[i].partner_link + "'>" + json[i].partner_message + "</a></li>");
+            };
+            return a.join('');
         };
+
+        $.getJSON('/partners/'+ cityName, function(json) {
+            $target.find('table').append("<div class='adds'><ul>" + addAdds(json) + "</ul></div>");
+        });
+    }
+    var whyCleveland = "The Cleveland Index:  Using open-source data, we have compared the CPI of each of the cities used in this app to that of Cleveland. We have done this to avoid paying an outrageous fee. We chose Cleveland, Ohio because it seems like it's a pretty average place. At the time of writing, a member of the development team is scheduled perform an on-site analysis of this hypothesis.";
+
+    $(document).ready(function() {
+
+        $('#whyCleveland').on("click", function() {
+            alert(whyCleveland);
+        });
+        // Seems that this jQuery selector must be set here
+        var $citiesSection = $('#cities');
+
+        $.getJSON('/cities.json', function(json) {
+            listCities($citiesSection, json);
+        });
     });
-}
-
-var whyCleveland = "The Cleveland Index:  Using open-source data, we have compared the CPI of each of the cities used in this app to that of Cleveland. We have done this to avoid paying an outrageous fee. We chose Cleveland, Ohio because it seems like it's a pretty average place. At the time of writing, a member of the development team is scheduled perform an on-site analysis of this hypothesis.";
-
-$(document).ready(function() {
-
-    $('#whyCleveland').on("click", function() {
-        alert(whyCleveland);
-    });
-    // Seems that this jQuery selector must be set here
-    var $citiesSection = $('#cities');
-
-    $.getJSON('/cities.json', function(json) {
-        listCities($citiesSection, json);
-    });
-});
