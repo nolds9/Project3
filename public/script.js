@@ -62,7 +62,6 @@ function getInfoTable(keyValuePairs) {
 // Puts city stats and picture of given city name in target contender space
 // Also adds weather from wunderground and updates job info from Indeed
 function setCityAsContender(cityName, $target) {
-<<<<<<< HEAD
     var city = getCityData(cityName); // get the JSON for the city selected
     $target.empty();
     $target.append(

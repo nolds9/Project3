@@ -189,8 +189,6 @@ server.get('/zillow/:city/:state', function(req, res) {
   });
 });
 
-<<<<<<< HEAD
-
 // needed for Trulia API calls TODO move me up with the other requires
 var dateFormat = require('dateformat');
 
