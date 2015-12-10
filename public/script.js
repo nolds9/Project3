@@ -138,7 +138,7 @@ function addMeMuchoGusto($container) {
     var savedId;
     $container.append("<div class='meMuchoGusto'>Click for More!</div>");
     $('.meMuchoGusto').on("click", function() {
-        var identity = $(this.parentElement).attr('id').val;
+        var identity = $(this.parentElement).eq(0).attr('id').val;
         var $contender = $(this.parentElement).eq(0);
         var cityName = $contender.find('h2')[0].innerHTML;
         savedId = $contender.attr('id').toString();
@@ -148,14 +148,15 @@ function addMeMuchoGusto($container) {
         $contender.find('.meMuchoGusto').hide();
         updateWeather(cityName, $contender);
         getEmployers(cityName, $contender);
-        $contender.find('.meMuchoGusto').append("<h1 class='exitButton'>X</h1>");
+        $contender.find('h2').append("<h1 class='exitButton'>X</h1>");
         $('.exitButton').on("click", function(){
-            exitPop($contender);
+            exitPop($contender, savedId);
         });
     });
 }
 
-function exitPop($contender) {
+//  MAKE SURE THIS IS ADDING EVERYTHIGN BACK!
+function exitPop($contender, savedId) {
     $contender.toggleClass('popAndLock', false);
     $contender.addClass('contender');
     $contender.attr('id', savedId);
@@ -163,7 +164,7 @@ function exitPop($contender) {
         var a = [];
         var trs = $contender.find('tr').length;
         for (var i = 3; i < trs.length; i++) {
-            a.push(trs[i]);
+            a.push(i);
         };
         return a;
     };
