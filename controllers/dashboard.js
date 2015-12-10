@@ -1,5 +1,8 @@
-var DashboardItem = require('../models/dashboard')
+var DashboardItem = require('../models/dashboard');
 var User            = require('../models/user');
+// var mongoose = require('mongoose');
+// var Schema = mongoose.Schema;
+// var ObjectId = Schema.ObjectId;
 
 var dashboardController = {
 
@@ -23,15 +26,34 @@ create: function (request, response) {
         })
       });
   },
-
-index: function (request, response){
-  // User.find({}, function(err, docs){
-  //   if (err) {
-  //     console.log(err);
+//
+// index: function (request, response){
+//   // User.find({}, function(err, docs){
+//   //   if (err) {
+//   //     console.log(err);
+//   //   } else {
+//   //     response.render('/partners/dashboard', "banana"})
+//   //   }
+//   }
+destroy: function(request, response){
+  // find the dashboard item
+  var dbItems = request.user.dashboardItems
+  console.log(request.user)
+  console.log(dbItems)
+  db.dbItems.update(
+    { _id: request.body.id },
+    { $pull: { _id: request.body.id } }
+  );
+  // dbItems.remove(function(err){
+  //   if (err){
+  //     console.log(err)
   //   } else {
-  //     response.render('/partners/dashboard', "banana"})
+  //     response.redirect('/partners/dashboard')
   //   }
-  }
+  // });
+  response.redirect('/partners/dashboard')
+  //
+}
 
   // response.render('dashboard.hbs', Users.findOne({_id: request.user._id}, function(err, doc) {
     // doc.dashboardItems

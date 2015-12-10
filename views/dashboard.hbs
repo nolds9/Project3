@@ -48,6 +48,12 @@
 <!-- {{currentUser}} -->
 <ul class="db_list">
   {{#each currentUser.dashboardItems}}
-  <li>{{partner_message}}-{{partner_link}}</li>
+  <li>{{partner_message}}  -  {{partner_link}}</li>
+  <form method = "POST" action = '/partners/dashboard?_method=DELETE'>
+   <input type='hidden' name="delete-db-item" value='{{this}}' >
+    <button type='submit'>Delete</button>
+</form>
   {{/each}}
 </ul>
+
+<!--delete button  -->
