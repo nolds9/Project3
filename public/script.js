@@ -12,7 +12,7 @@ function getCleveIndexString(index) {
   if ( indexRounded > 95 && indexRounded < 105 ) {
     return 'on par with Cleveland';
   } else if ( index > 1 ) {
-    return (indexRounded - 100) + '% pricier than Cleveland';
+    return (indexRounded / 100) + 'x pricier than Cleveland';
   } else {
     return (100 - indexRounded) + '% cheaper than Cleveland';
   }
@@ -59,6 +59,7 @@ function getInfoTable(keyValuePairs) {
 }
 
 // Puts city stats and picture of given city name in target contender space
+// Also adds weather from wunderground and updates job info from Indeed
 function setCityAsContender(cityName, $target) {
   var city = getCityData(cityName); // get the JSON for the city selected
   $target.empty();
@@ -70,8 +71,6 @@ function setCityAsContender(cityName, $target) {
       ['Number of jobs', numberWithCommas(city.numJobs) ],
       ['Cost of living', getCleveIndexString(city.costOfLiving) ]
     ]));
-  updateWeather(cityName, $target);
-  getEmployers(cityName, $target);
   addIndeedData(cityName, $target);
   // reconfigureScreen();
 }
@@ -118,6 +117,7 @@ function listCities($target, citiesJson) {
   }
 }
 
+// Grabs data from Indeed and replaces the job number
 function addIndeedData(cityName, $target){
     var city = cityName.split(',')[0];
     var state = cityName.split(', ')[1];
@@ -132,13 +132,18 @@ function addIndeedData(cityName, $target){
 });
 }
 
+// Adds the clickable div to the contender
 function addMeMuchoGusto($container){
     $container.append("<div class='meMuchoGusto'>Click for More!</div>");
     $('.meMuchoGusto').on("click", function(){
-        alert('OMG WHY?');
+        var cityName = $container.find('h2')[0].innerText.toString();
+        console.log(cityName);
+        updateWeather(cityName, $container);
+        getEmployers(cityName, $container);
     });
 }
 
+// Glassdoor API call
 function getEmployers(cityName, $target){
     var city = cityName.split(',')[0];
     var state = cityName.split(', ')[1];
@@ -172,17 +177,12 @@ function getEmployers(cityName, $target){
     });
 }
 
-// function reconfigureScreen(){
-//     if ((document.getElementById('arena').style.height) > (window.innerHeight)) {
-//         document.getElementById('cities').style.width = "100px";
-//         document.getElementById('cities').style.height = "auto";
-//     };
-// }
+var whyCleveland = "The Cleveland Index:  Using open-source data, we have compared the CPI of each of the cities used in this app to that of Cleveland. We have done this to avoid paying an outrageous fee. We chose Cleveland, Ohio because it seems like it's a pretty average place. At the time of writing, a member of the development team is scheduled perform an on-site analysis of this hypothesis.";
 
 $(document).ready( function() {
 
     $('#whyCleveland').on("click", function(){
-        alert("The Cleveland Index:  Using open-source data, we have compared the CPI of each of the cities used in this app to that of Cleveland. We have done this to avoid paying an outrageous fee. We chose Cleveland, Ohio because it seems like it's a pretty average place. At the time of writing, a member of the development team is scheduled perform an in-person analysis of this hypothesis.");
+        alert(whyCleveland);
     });
   // Seems that this jQuery selector must be set here
   var $citiesSection = $('#cities');
