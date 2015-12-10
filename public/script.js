@@ -133,13 +133,36 @@ function addIndeedData(cityName, $target){
 }
 
 // Adds the clickable div to the contender
+var savedId;
 function addMeMuchoGusto($container){
+    var clickCount = 0;
     $container.append("<div class='meMuchoGusto'>Click for More!</div>");
     $('.meMuchoGusto').on("click", function(){
+        clickCount += 1;
         var cityName = $container.find('h2')[0].innerText.toString();
-        console.log(cityName);
-        updateWeather(cityName, $container);
-        getEmployers(cityName, $container);
+        if (clickCount % 2 === 1) {
+            savedId = $container.attr('id').toString();
+            $container.toggleClass('popAndLock', true);
+            $container.toggleClass('contender', false);
+            $container.removeAttr('id');
+            $('.meMuchoGusto')[0].innerText = 'Exit';
+            updateWeather(cityName, $container);
+            getEmployers(cityName, $container);
+        }else if (clickCount % 2 === 0) {
+            $container.toggleClass('popAndLock', false);
+            $container.toggleClass('contender', true);
+            $container.attr('id', savedId);
+            var extraTrNums = function(){
+                var a =[];
+                var trs = $container.find('tr').length;
+                for (var i = 3; i < trs.length; i++) {
+                    a.push(trs[i]);
+                };
+                return a;
+            };
+            $($container.find('tr')[extraTrNums]).remove();
+            $('.meMuchoGusto')[0].innerText = 'Click for More!';
+        };
     });
 }
 
