@@ -1,0 +1,37 @@
+<h1>Partners Dashboard</h1>
+
+<form method="post" action="/partners/dashboard">
+  <div class="form-group">
+    <label for="Message">Your Message:</label>
+    <input class="form-control" type="text" name="partner_message" maxlength="30">
+  </div>
+
+  <div class="form-group">
+    <label for="url">Your Link:</label>
+    <input class="form-control" type="text" name="partner_link" maxlength="30">
+  </div>
+
+  <label for="Cities">Choose a City:</label>
+  <select name="city" required="true">
+   <option selected disabled>Select City</option>
+   {{#each cities}}
+     <option value="{{name}}">{{name}}</option>
+   {{/each}}
+ </select>
+
+  <input class="button" type="submit">
+</form>
+
+<h2>Active Messages</h2>
+
+<ul class="db_list">
+  {{#each currentUser.dashboardItems}}
+  <li>{{partner_message}}  -  {{partner_link}}  -  {{city}}</li>
+  <form method = "POST" action = '/partners/dashboard/{{this._id}}?_method=DELETE'>
+   <input type='hidden' name="delete-db-item" value='{{this}}' >
+    <button type='submit'>Delete</button>
+</form>
+  {{/each}}
+</ul>
+
+<!--delete button  -->

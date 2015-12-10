@@ -1,3 +1,4 @@
+
 // What's wrong with storing city data here for global use?
 var cities; // filled by ajax request in listCities()
 
