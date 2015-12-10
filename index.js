@@ -113,7 +113,9 @@ server.get('/zillow/:city/:state', function(req, res) {
   });
 });
 
-var dateFormat = require('dateformat'); // needed for Trulia API calls
+
+// needed for Trulia API calls TODO move me up with the other requires
+var dateFormat = require('dateformat');
 
 // API endpoint/proxy for Trulia requests to get average 2-bedroom listing prices
 server.get('/trulia/:city/:state', function(req, res) {
@@ -157,5 +159,66 @@ server.get('/trulia/:city/:state', function(req, res) {
     } else {
       console.log(error);
     }
+  });
+});
+
+// API proxy/endpoint for citybik.es data on bicycle share stats
+server.get('/citybikes/:city/:state', function(req, res) {
+  // Docs: http://api.citybik.es/
+  var cityState = [req.params.city, req.params.state].join(', ');
+  var networkIndexUrl = 'http://api.citybik.es/networks.json';
+
+  var match;
+
+  request(networkIndexUrl, function(error, response, body) {
+    if ( !error && response.statusCode == 200 ) { // if no error and status is OK
+
+      var cityBikesJson = JSON.parse(body); // gets list of city bikeshare systems
+      // if the given city is in that json, assign it to match
+
+      // var match = cityBikesJson.find( function(el) {
+      //   return [cityState, 'Pittsburgh', 'San Francisco Bay Area, CA'].indexOf(el.city) >= 0;
+      // });
+      for ( var i = 0; i < cityBikesJson.length; i += 1 ) {
+        if ( cityBikesJson[i].city == cityState ) {
+          match = cityBikesJson[i];
+        }
+      }
+      if ( cityState == 'San Francisco, CA') {
+        match = cityBikesJson.find( function(city) {
+          return city.city == 'San Francisco Bay Area, CA';
+        });
+      } if ( cityState == 'Pittsburgh, PA' ) {
+        match = cityBikesJson.find( function(city) {
+          return city.city == 'Pittsburgh';
+        });
+      }
+      console.log(match);
+      if (match) {
+        var sysUrl = match.url;
+        // var sysUrl = 'http://api.citybik.es/' + '.json'
+        request(sysUrl, function(e, r, b) {
+          if ( !e && r.statusCode == 200 ) {
+            var sysJson = JSON.parse(b);
+            // var bikesFree = sysJson.reduce( function (a, b) {
+            //   return a.free + b.free;
+            // }); // not sure why reduce doesn't work
+            var bikesFree = 0;
+            for ( var i = 0; i < sysJson.length; i += 1 ) {
+              bikesFree += sysJson[i].free;
+            }
+            var output = {
+              'name': match.name,
+              'bike_stations' : sysJson.length,
+              'bikes_free' : bikesFree
+            };
+            // console.log(JSON.stringify(output));
+            res.json(output);
+          } else { console.log('Error:', sysUrl, e); }
+        });
+      } else { // nothing found
+        res.json({'nada': 'Nothing found'});
+      }
+    } else { console.log('Error:', error); }
   });
 });
