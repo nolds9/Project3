@@ -138,31 +138,38 @@ function addMeMuchoGusto($container) {
     var savedId;
     $container.append("<div class='meMuchoGusto'>Click for More!</div>");
     $('.meMuchoGusto').on("click", function() {
-        var cityName = $container.find('h2')[0].innerText.toString();
-        savedId = $container.attr('id').toString();
-        $container.toggleClass('popAndLock', true);
-        $container.removeClass('contender');
-        $container.removeAttr('id');
-        $container.find('.meMuchoGusto').hide();
-        updateWeather(cityName, $container);
-        getEmployers(cityName, $container);
+        var identity = $(this.parentElement).attr('id').val;
+        var $contender = $(this.parentElement).eq(0);
+        var cityName = $contender.find('h2')[0].innerHTML;
+        savedId = $contender.attr('id').toString();
+        $contender.toggleClass('popAndLock', true);
+        $contender.removeClass('contender');
+        $contender.removeAttr('id');
+        $contender.find('.meMuchoGusto').hide();
+        updateWeather(cityName, $contender);
+        getEmployers(cityName, $contender);
+        $contender.find('.meMuchoGusto').append("<h1 class='exitButton'>X</h1>");
+        $('.exitButton').on("click", function(){
+            exitPop($contender);
+        });
     });
 }
 
-function exitPop($container) {
-    $container.toggleClass('popAndLock', false);
-    $container.addClass('contender');
-    $container.attr('id', savedId);
+function exitPop($contender) {
+    $contender.toggleClass('popAndLock', false);
+    $contender.addClass('contender');
+    $contender.attr('id', savedId);
     var extraTrNums = function() {
         var a = [];
-        var trs = $container.find('tr').length;
+        var trs = $contender.find('tr').length;
         for (var i = 3; i < trs.length; i++) {
             a.push(trs[i]);
         };
         return a;
     };
-    $($container.find('tr')[extraTrNums]).remove();
-    $container.find('.meMuchoGusto').show();
+    $($contender.find('tr')[extraTrNums]).remove();
+    $contender.find('.meMuchoGusto').show();
+    $('.exitButton').remove();
 }
 
 // Glassdoor API call
