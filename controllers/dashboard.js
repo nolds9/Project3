@@ -2,9 +2,6 @@ var DashboardItem = require('../models/dashboard');
 var User          = require('../models/user');
 var CityModel     = require('../models')
 var mongodb = require('mongodb');
-// var mongoose = require('mongoose');
-// var Schema = mongoose.Schema;
-// var ObjectId = Schema.ObjectId;
 
 var dashboardController = {
 
