@@ -5,7 +5,7 @@ var Schema = mongoose.Schema,
 
 var CitySchema = new Schema({
   name: String,
-  imageUrl: String,
+  gifUrl: String,
   averageSalary: String,
   numJobs: String,
   costOfLiving: String

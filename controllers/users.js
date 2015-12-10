@@ -45,16 +45,6 @@ function getLogout(request, response) {
   response.redirect('/partners');
 }
 
-// GET dashboard
-function showDashboardForm(request, response){
-  response.render('dashboard.hbs')
-}
-
-//post dashboard
-function postDashboard(request, response) {
-  response.send('hi')
-}
-
 module.exports = {
   getLogin: getLogin,
   postLogin: postLogin,

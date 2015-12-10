@@ -39,3 +39,15 @@
 </form>
 
 <!-- TODO put in some handlebars stuff to display each dashboard item -->
+<h2>Active Messages</h2>
+<!-- {{#if dashboardItems}}
+  <p>dashboardItems is here</p>
+{{else}}
+  <p>dashboardItems not sent</p>
+{{/if}} -->
+<!-- {{currentUser}} -->
+<ul class="db_list">
+  {{#each currentUser.dashboardItems}}
+  <li>{{partner_message}}-{{partner_link}}</li>
+  {{/each}}
+</ul>
