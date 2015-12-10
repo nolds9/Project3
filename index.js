@@ -81,7 +81,6 @@ function convertToParams( searchParamsAsJson ) {
 }
 
 // API endpoint/proxy for Zillow region charts
-// FIXME DOESNT WORK. don't know why the charts are always empty
 server.get('/zillow/:city/:state', function(req, res) {
   var searchParams = {
     'zws-id': env.ZILLOW_KEY,
