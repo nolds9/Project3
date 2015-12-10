@@ -38,12 +38,14 @@ create: function (request, response) {
 destroy: function(request, response){
   // find the dashboard item
   var dbItems = request.user.dashboardItems
-  console.log(request.user)
-  console.log(dbItems)
-  db.dbItems.update(
+  // console.log(request.user)
+  // console.log(dbItems)
+  DashboardItem.update(
     { _id: request.body.id },
     { $pull: { _id: request.body.id } }
-  );
+  ).then(function(err, doc){
+  console.log(err, doc)
+});
   // dbItems.remove(function(err){
   //   if (err){
   //     console.log(err)
