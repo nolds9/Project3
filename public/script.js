@@ -1,3 +1,4 @@
+
 // What's wrong with storing city data here for global use?
 var cities; // filled by ajax request in listCities()
 
@@ -61,6 +62,7 @@ function getInfoTable(keyValuePairs) {
 // Puts city stats and picture of given city name in target contender space
 // Also adds weather from wunderground and updates job info from Indeed
 function setCityAsContender(cityName, $target) {
+<<<<<<< HEAD
     var city = getCityData(cityName); // get the JSON for the city selected
     $target.empty();
     $target.append(

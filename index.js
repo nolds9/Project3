@@ -1,8 +1,20 @@
 var express = require('express');
+var server = express();
 var mongoose = require('mongoose');
 var request = require("request");
 var bodyParser = require('body-parser');
 var parseString = require('xml2js').parseString;
+//for user authentication we add passport, flash (to display signin messages), morgan, cookieParser, and session
+var passport     = require('passport');
+var flash        = require('connect-flash');
+var hbs = require('hbs');
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session      = require('express-session');
+var methodOverride = require('method-override')
+
+server.use(methodOverride('_method'))
 
 var env; // config vars
 try { // check if we have a local env.js
@@ -15,10 +27,23 @@ try { // check if we have a local env.js
 
 mongoose.connect(env.MONGO_SERVER || env.MONGOLAB_URI);
 
+// server.use(bodyParser.json());
+server.use(morgan('dev'));
+server.use(cookieParser());
+server.use(bodyParser());
+
 var CityModel = require('./models');
 
-var server = express();
-// server.use(bodyParser.json());
+server.set('view engine', 'hbs');
+server.set("views","./views");
+
+server.use(session({ secret: 'WDI-GENERAL-ASSEMBLY-EXPRESS' }));
+server.use(passport.initialize());
+server.use(passport.session());
+server.use(flash());
+
+require('./config/passport')(passport);
+
 var path = require('path'); // needed for path.join function on next line
 server.use(express.static(path.join(__dirname, 'public'))); // FIXME
 
@@ -27,6 +52,15 @@ server.listen(env.PORT || 4000, function() {
     console.log('Make sure port is included in config vars or env.js. ' +
     'Server listening on port 4000.');
 });
+
+server.use(function(req, res, next){
+  res.locals.currentUser = req.user;
+  next()
+});
+
+var routes = require('./config/routes');
+server.use(routes);
+
 
 server.get('/cities.json', function(req, res) {
     CityModel.find({}, function(err, docs) {
@@ -155,6 +189,7 @@ server.get('/zillow/:city/:state', function(req, res) {
   });
 });
 
+<<<<<<< HEAD
 
 // needed for Trulia API calls TODO move me up with the other requires
 var dateFormat = require('dateformat');
@@ -282,4 +317,5 @@ server.get('/githubjobs/:city/:state', function(req, res) {
       res.json(jobs);
     }
   });
+
 });
