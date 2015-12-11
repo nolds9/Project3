@@ -169,6 +169,12 @@ tr {
     font-family: monaco, Consolas, 'Lucida Console', monospace;
 }
 
+.adds {
+    position: relative;
+    top: 0;
+    right: 0;
+}
+
 @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }

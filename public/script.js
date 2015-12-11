@@ -154,13 +154,12 @@ function addMeMuchoGusto($container) {
         });
         getPaidContent(cityName, $contender);
     });
-}
 
 function exitPop($contender, savedId) {
     $contender.toggleClass('popAndLock', false);
     $contender.addClass('contender');
     $contender.attr('id', savedId);
-    $contender.find(".adds").eq(0).remove();
+    // $contender.find(".adds").eq(0).remove();
     var extraTrNums = function() {
         var a = [];
         var trs = $contender.find('tr').length;
@@ -170,6 +169,7 @@ function exitPop($contender, savedId) {
         return a;
     };
     $contender.find('tr').eq(extraTrNums).remove(); $contender.find('.meMuchoGusto').show(); $('.exitButton').remove();
+};
     }
 
     // Glassdoor API call
@@ -217,7 +217,7 @@ function exitPop($contender, savedId) {
         };
 
         $.getJSON('/partners/'+ cityName, function(json) {
-            $target.find('table').append("<div class='adds'><ul>" + addAdds(json) + "</ul></div>");
+            $target.find('table').prepend("<div class='adds'><ul>" + addAdds(json) + "</ul></div>");
         });
     }
     var whyCleveland = "The Cleveland Index:  Using open-source data, we have compared the CPI of each of the cities used in this app to that of Cleveland. We have done this to avoid paying an outrageous fee. We chose Cleveland, Ohio because it seems like it's a pretty average place. At the time of writing, a member of the development team is scheduled perform an on-site analysis of this hypothesis.";
