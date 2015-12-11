@@ -49,28 +49,38 @@ var james = new User({
   }
 })
 var dashboardItem1 = new DashboardItem({
-  partner_message: "Join us today!",
-  partner_link: "www.facebook.com",
-  city: "Chicago"
+  partner_message: "Feast on Holiday Bootcamps",
+  partner_link: "https://generalassemb.ly/",
+  city: "Washington, DC"
 });
 var dashboardItem2 = new DashboardItem({
-  partner_message: "We got jobs!",
-  partner_link: "www.facebook.com",
-  city: "Seattle"
+  partner_message: 'Life\'s to short for the wrong career',
+  partner_link: "http://theironyard.com/",
+  city: "Washington, DC"
 });
 var dashboardItem3 = new DashboardItem({
-  partner_message: "We got jobs!",
-  partner_link: "www.facebook.com",
-  city: "Los Angeles"
+  partner_message: '21 Reasons You Should Follow "Dogs Taking Dumps" On Instagram',
+  partner_link: 'http://www.buzzfeed.com/jelenaa/21-reasons-why-you-should-follow-dogs-taking-dumps-g2wy',
+  city: "Chicago, IL"
 });
 var dashboardItem4 = new DashboardItem({
-  partner_message: "We got jobs!",
-  partner_link: "www.facebook.com",
-  city: "Boston"
+  partner_message: 'All Your Search History Data Are Belong to Us',
+  partner_link: 'http://www.google.com/about/careers/',
+  city: 'San Francisco, CA'
+});
+var dashboardItem5 = new DashboardItem({
+  partner_message: 'All Your Search History Data Are Belong to Us',
+  partner_link: 'http://www.google.com/about/careers/',
+  city: 'New York, NY'
+});
+var dashboardItem6 = new DashboardItem({
+  partner_message: 'The One Way You Should Be Using Nutella',
+  partner_link: 'http://www.buzzfeed.com/emilyhorng/the-one-way-you-should-be-using-nutella#.vbDbl9exE',
+  city: 'Atlanta, GA'
 });
 
 var users = [daniel, james];
-var dashboardItems = [dashboardItem1, dashboardItem2, dashboardItem3, dashboardItem4];
+var dashboardItems = [dashboardItem1, dashboardItem2, dashboardItem3, dashboardItem4, dashboardItem5, dashboardItem6];
 
 for(var i = 0; i < users.length; i++){
   users[i].dashboardItems.push(dashboardItems[i], dashboardItems[i+2])

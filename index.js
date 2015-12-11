@@ -317,3 +317,52 @@ server.get('/githubjobs/:city/:state', function(req, res) {
   });
 
 });
+
+var DashboardItem = require('./models/dashboard');
+// Get partner messages by city
+server.get('/partners/messages/all', function(req, res) {
+  // var ci = req.params.state;
+  // var city = req.params.city;
+  DashboardItem.find({}, function(err, docs) {
+    if (err) {
+        console.log(err);
+    } else {
+      res.json(docs);
+    }
+  });
+});
+
+// probably delete later, this returns all partner messages
+server.get('/partners/messages/all', function(req, res) {
+  // var ci = req.params.state;
+  // var city = req.params.city;
+  DashboardItem.find({}, function(err, docs) {
+    if (err) {
+        console.log(err);
+    } else {
+      res.json(docs);
+    }
+  });
+});
+
+server.get('/partners/:cityName', function(req, res) {
+  var city = req.params.cityName;
+  DashboardItem.find( {cityName: decodeURI(city)}, function(err, docs) {
+    if (err) {
+        console.log(err);
+    } else {
+      console.log(docs);
+      res.json(docs);
+    }
+  });
+});
+
+// function isBigEnough(value) {
+//   return value >= 10;
+// }
+// var filtered = [12, 5, 8, 130, 44].filter(isBigEnough);
+// filtered is [12, 130, 44]
+
+// partner_message: String,
+// partner_link: String,
+// city: String
