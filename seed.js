@@ -49,8 +49,8 @@ var james = new User({
   }
 })
 var dashboardItem1 = new DashboardItem({
-  partner_message: "Feast on Holiday Bootcamps",
-  partner_link: "https://generalassemb.ly/",
+  partner_message: 'Feast on Holiday Bootcamps',
+  partner_link: 'https://generalassemb.ly/',
   city: "Washington, DC"
 });
 var dashboardItem2 = new DashboardItem({
