@@ -211,7 +211,7 @@ function exitPop($contender, savedId) {
         function addAdds(json) {
             var a = [];
             for (var i = 0; i < json.length; i++) {
-                a.push("<li><a href='http://" + json[i].partner_link + "'>" + json[i].partner_message + "</a></li>");
+                a.push("<li><a href='" + json[i].partner_link + "'>" + json[i].partner_message + "</a></li>");
             };
             return a.join('');
         };
