@@ -54,9 +54,9 @@ var dashboardItem1 = new DashboardItem({
   city: "Washington, DC"
 });
 var dashboardItem2 = new DashboardItem({
-  partner_message: 'Life\'s to short for the wrong career',
-  partner_link: "http://theironyard.com/",
-  city: "Washington, DC"
+  partner_message: 'The One Way You Should Be Using Nutella',
+  partner_link: 'http://www.buzzfeed.com/emilyhorng/the-one-way-you-should-be-using-nutella#.vbDbl9exE',
+  city: 'Atlanta, GA'
 });
 var dashboardItem3 = new DashboardItem({
   partner_message: '21 Reasons You Should Follow "Dogs Taking Dumps" On Instagram',
@@ -68,19 +68,9 @@ var dashboardItem4 = new DashboardItem({
   partner_link: 'http://www.google.com/about/careers/',
   city: 'San Francisco, CA'
 });
-var dashboardItem5 = new DashboardItem({
-  partner_message: 'All Your Search History Data Are Belong to Us',
-  partner_link: 'http://www.google.com/about/careers/',
-  city: 'New York, NY'
-});
-var dashboardItem6 = new DashboardItem({
-  partner_message: 'The One Way You Should Be Using Nutella',
-  partner_link: 'http://www.buzzfeed.com/emilyhorng/the-one-way-you-should-be-using-nutella#.vbDbl9exE',
-  city: 'Atlanta, GA'
-});
 
 var users = [daniel, james];
-var dashboardItems = [dashboardItem1, dashboardItem2, dashboardItem3, dashboardItem4, dashboardItem5, dashboardItem6];
+var dashboardItems = [dashboardItem1, dashboardItem2, dashboardItem3, dashboardItem4];
 
 for(var i = 0; i < users.length; i++){
   users[i].dashboardItems.push(dashboardItems[i], dashboardItems[i+2])

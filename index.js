@@ -347,7 +347,8 @@ server.get('/partners/messages/all', function(req, res) {
 
 server.get('/partners/:cityName', function(req, res) {
   var city = req.params.cityName;
-  DashboardItem.find( {cityName: decodeURI(city)}, function(err, docs) {
+  var DashboardItem = require('./models/dashboard');
+  DashboardItem.find( {city: decodeURI(city)}, function(err, docs) {
     if (err) {
         console.log(err);
     } else {
@@ -356,13 +357,3 @@ server.get('/partners/:cityName', function(req, res) {
     }
   });
 });
-
-// function isBigEnough(value) {
-//   return value >= 10;
-// }
-// var filtered = [12, 5, 8, 130, 44].filter(isBigEnough);
-// filtered is [12, 130, 44]
-
-// partner_message: String,
-// partner_link: String,
-// city: String
