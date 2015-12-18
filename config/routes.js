@@ -9,7 +9,7 @@ var usersController = require('../controllers/users');
 var staticsController = require('../controllers/statics');
 var dashboardController = require('../controllers/dashboard');
 var User            = require('../models/user');
-// var dashboardItems = require('../models/dashboard');
+// var dashboardItems = require('../models/dashboard');  // NHO: Reminder to remove commented out code
 
 
 function authenticatedUser(req, res, next) {

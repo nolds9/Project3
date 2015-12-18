@@ -1,3 +1,4 @@
+// NHO: Feels like you could refactor this to be one big object and export just that object similar to how you did with dashboard
 var passport = require("passport")
 
 // GET /signup

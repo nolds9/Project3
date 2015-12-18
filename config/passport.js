@@ -1,3 +1,5 @@
+// NHO: Nice job implementing user auth with passport
+// NHO: Recommend you run this code through atom's beautifiy package to help with indentation, readbility
 var LocalStrategy   = require('passport-local').Strategy;
 var User            = require('../models/user');
 
@@ -35,7 +37,7 @@ var User            = require('../models/user');
       return callback(null, newUser);
     });
       }
-    });
+    }); // NHO: What's going on here? Would recommend cleaning up indentation to impove readbility
    }));
    passport.use('local-login', new LocalStrategy({
      usernameField: 'email',
@@ -58,3 +60,4 @@ var User            = require('../models/user');
  }
 
  //TODO add flash message for dashboard if user tries to click on it without being signed in
+//  NHO: Would like to see you get to this, looks like a example of a great low-hanging fruit!

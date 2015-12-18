@@ -1,3 +1,4 @@
+// NHO: Would recommend you break this file down into natural seperations, i.e. dependencies, then middleware, then routes, etc.
 var express = require('express');
 var server = express();
 var mongoose = require('mongoose');
@@ -16,6 +17,7 @@ var methodOverride = require('method-override')
 
 server.use(methodOverride('_method'))
 
+// NHO: Nice use of try, catch to handle the flip between enivronments!
 var env; // config vars
 try { // check if we have a local env.js
   env = require('./env'); // local development/testing with env.js
@@ -25,8 +27,9 @@ try { // check if we have a local env.js
 // here'a tip for further environment config:
 // https://github.com/strongloop/express/wiki/Migrating-from-3.x-to-4.x#appconfigure
 
-mongoose.connect(env.MONGO_SERVER || env.MONGOLAB_URI);
+mongoose.connect(env.MONGO_SERVER || env.MONGOLAB_URI); // NHO: Like how you hide the URI and Port using env variables
 
+//  NHO: Considering consolidating middleware into a dedicated section
 // server.use(bodyParser.json());
 server.use(morgan('dev'));
 server.use(cookieParser());
@@ -61,7 +64,7 @@ server.use(function(req, res, next){
 var routes = require('./config/routes');
 server.use(routes);
 
-
+// NHO: Would love to see this functionality seperated out into a controller, or routes file
 server.get('/cities.json', function(req, res) {
     CityModel.find({}, function(err, docs) {
         if (err) {
@@ -357,3 +360,4 @@ server.get('/partners/:cityName', function(req, res) {
     }
   });
 });
+// NHO: Seriously, lets seperate our concerns!

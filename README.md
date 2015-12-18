@@ -5,7 +5,7 @@ pertaining to web developers for the different cities, such as average salary,
 number of current open job listings, local companies that are currently hiring web developers, cost of living, and even lifestyle-related concerns such as bike share information, weather, and real-estate prices.
 
 #Getting Started
-To get a copy of the app running on your local machine, check out the project repository on Github at https://github.com/Briik/Project3 and clone the json_backend_concept branch(it's the default branch).  For this to work please first run 'npm install' to get the necessary dependencies.  Make sure to then seed the data by running 'node seed.js'.  Next run 'nodemon' and go to localhost:4000 in your browser.
+To get a copy of the app running on your local machine, check out the project repository on Github at https://github.com/Briik/Project3 and clone the json_backend_concept branch(it's the default branch).  For this to work please first run `npm install` to get the necessary dependencies.  Make sure to then seed the data by running `node seed.js`.  Next run `nodemon` and go to localhost:4000 in your browser.
 
 To run the app locally you will also need to create the env.js file, which has the following code (obviously you need to provide your own API keys):
 
