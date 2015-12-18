@@ -1,4 +1,5 @@
-// What's wrong with storing city data here for global use?
+// NHO: Should this whole file be wrapped in the $document.ready?
+// What's wrong with storing city data here for global use? // <--- YOU! NHO: how could we use a few techniques we just learned to not pollute the global namespace?
 var cities; // filled by ajax request in listCities()
 
 // Helper function to add nice-looking commas to long numbers
@@ -23,6 +24,7 @@ var clicks = 0; // counts the number of clicks on cities
 // helper function for ajax call to get weather JSON
 function updateWeather(cityName, $target) { // get custom JSON element for city
     $.getJSON('/weather/' + cityName.split(',')[0] + '/' + cityName.split(', ')[1], function(json) {
+      // NHO: Reminder to remove unused or commented out code
         // var $weatherEl = $target.find('p.weather');
         // $weatherEl.empty();
         // $weatherEl.append('<img src="' + json.icon_url  + '">');
@@ -76,7 +78,7 @@ function setCityAsContender(cityName, $target) {
 }
 
 // Counts clicks, delegates rendering of contender cities to left or right
-function setContender(cityName) {
+function setContender(cityName) { // NHO: Like how even your functions make this seem like a Battle Royal
     var $contenderRight = $('#contender-right');
     var $contenderLeft = $('#contender-left');
     if (clicks % 2 === 1) { // set contender on left
@@ -133,8 +135,7 @@ function addIndeedData(cityName, $target) {
 }
 
 // Adds the clickable div to the contender
-
-function addMeMuchoGusto($container) {
+function addMeMuchoGusto($container) { // FIGHT! NHO: Love the creativity, but maybe a more semantic name to be helpful to future you
     var savedId;
     $container.append("<div class='meMuchoGusto'>Click for More!</div>");
     $('.meMuchoGusto').on("click", function() {
@@ -220,6 +221,7 @@ function exitPop($contender, savedId) {
             $target.find('table').prepend("<div class='adds'><ul>" + addAdds(json) + "</ul></div>");
         });
     }
+    // NHO: Recommend adding line breaks in this block of text
     var whyCleveland = "The Cleveland Index:  Using open-source data, we have compared the CPI of each of the cities used in this app to that of Cleveland. We have done this to avoid paying an outrageous fee. We chose Cleveland, Ohio because it seems like it's a pretty average place. At the time of writing, a member of the development team is scheduled perform an on-site analysis of this hypothesis.";
 
     $(document).ready(function() {
@@ -234,3 +236,14 @@ function exitPop($contender, savedId) {
             listCities($citiesSection, json);
         });
     });
+
+// NHO: This is a pretty big file, again I see some easily identifiable low hanging fruit!
+// We have an opportunity to refactor, and group based on common functionality, following MVC/principle we learned in class
+
+// NHO: I see the potential to break down each API into its own FE and BE model,
+// then can easily communitcate data flow, and render appropriate views accordingly!
+// There's also a lot of stringifyied HTML here...
+// would recommend looking into a templating library such as Handlebars to easily compile dynamic HTML!
+
+// The only thing missing from this app is the 90's Mortal Combat Theme Song playing in the background, maybe add few more bell's and whistles!
+// I feel like a great adventure over break would be to refactor the FE to use Angular!

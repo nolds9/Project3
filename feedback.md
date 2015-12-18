@@ -1,0 +1,19 @@
+# Evaluation Criteria
+
+| Category                        | Incomplete                                                                                                                    | Progressing                                                                                                                                                                                           | Performing                                                                                                                                                             | Excelling                                                                                                                                                                                                           |
+|---------------------------------|-------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Back-end Technology             |   |   | | Includes many well-structured models, and advanced functionality such as authorization, 3rd-party API integration, or other technology not covered in class                                                                                                                              |                                                                                                                                                               |
+| Front-end Technology            |   |   | Front-end makes appropriate use of AJAX requests and tempting, follows basic patters of OOJS                                                                           |                                                                                                                                                               |  
+| Code Quality                    |   |   |  No major code quality issues, makes use of OOJS patterns appropriately, and follows techniques such as separation of concerns, abstraction, and encapsulation                                                                                                                                                                       | |
+| Deployment and Functionality    |   |   | Application contains no major errors, is deployed correctly, and contains a custom Heroku app name appropriate for the app.                                            |                                                                                                                                                               |
+| Planning / Process / Submission |   |   | Submission contains clear evidence of planning, adequate documentation, include all from previous category, as well as additional information such as unsolved issues. | |                                                                                                                                                            |
+
+Please review [Inline Code Comments](https://github.com/nolds9/Project3/compare/json_backend_concept...feedback) prefixed with my initials `NHO`
+
+Notes:
+- Directory structure
+  - Would like to see more natural separation of concerns
+    - i.e there's a `db` directory with all relevant files, like `seeds.json`, `schema.js`
+    - `models.js` is renamed to `city.js` and moved to `models` directory
+    - Break up `index.js`
+    - Break up `script.js`

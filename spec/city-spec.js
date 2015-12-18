@@ -1,3 +1,5 @@
+// NHO: TESTS! WOOHOO!
+
 // requires jasmine-node
 var City = require('../models');
 

@@ -1,3 +1,4 @@
+<!-- NHO: adjusted indentation with Atom's Beautify Package -->
 <h1>Partners Dashboard</h1>
 
 <form method="post" action="/partners/dashboard">
@@ -13,11 +14,11 @@
 
   <label for="Cities">Choose a City:</label>
   <select name="city" required="true">
-   <option selected disabled>Select City</option>
-   {{#each cities}}
-     <option value="{{name}}">{{name}}</option>
-   {{/each}}
- </select>
+    <option selected disabled>Select City</option>
+    {{#each cities}}
+      <option value="{{name}}">{{name}}</option>
+    {{/each}}
+  </select>
 
   <input class="button" type="submit">
 </form>
@@ -26,12 +27,11 @@
 
 <ul class="db_list">
   {{#each currentUser.dashboardItems}}
-  <li>{{partner_message}}  -  {{partner_link}}  -  {{city}}</li>
-  <form method = "POST" action = '/partners/dashboard/{{this._id}}?_method=DELETE'>
-   <input type='hidden' name="delete-db-item" value='{{this}}' >
-    <button type='submit'>Delete</button>
-</form>
+    <li>{{partner_message}} - {{partner_link}} - {{city}}</li>
+    <!--delete button  -->
+    <form method="POST" action='/partners/dashboard/{{this._id}}?_method=DELETE'>
+      <input type='hidden' name="delete-db-item" value='{{this}}'>
+      <button type='submit'>Delete</button>
+    </form>
   {{/each}}
 </ul>
-
-<!--delete button  -->
